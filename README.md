@@ -6,15 +6,15 @@ Repositório contendo as atividades da disciplina Arquitetura de Aplicações co
 
 ## Verificação da versão do Node.JS
 
-Check active version
+Checar a versão ativa do Node.JS
 ```shell
 node --version
 # v24.5.0 (latest version)
 ```
 
-Check installed versions
+Checar as versões instaladas usando o nvm:
 ```shell
-nwm ls # check installed versions
+nwm ls
 #        v22.18.0
 # ->      v24.5.0
 # default -> node (-> v24.5.0)
@@ -35,19 +35,19 @@ nwm ls # check installed versions
 # lts/jod -> v22.18.0
 ```
 
-Setting alias default to point to LTS version
+Configurar o alias default para apontar para a versão LTS:
 
 ```shell
 nvm alias default 22.18.0
 ```
 
-Switching to the last LTS version (long term support) using `nvm`:
+Mudar para a última versão LTS instalada (LTS = suporte de longa duração) usando o `nvm`
 
 ```shell
 nvm use default
 ```
 
-Commands added to .bashrc to avoid to type them every time a new bash is opened:
+Comandos adicionados ao arquivo `.bashrc` para evitar digitá-los a cada nova instância do bash criada:
 
 ```file
 nvm alias default 22.18.0
