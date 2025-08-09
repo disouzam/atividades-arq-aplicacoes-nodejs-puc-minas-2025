@@ -54,3 +54,25 @@ nvm alias default 22.18.0
 nvm use default
 node -v
 ```
+
+### Instalação do nest cli globalmente
+
+```shell
+npm i -g @nestjs/cli
+```
+
+### Criação do projeto
+
+```shell
+nest new project-manager-api
+# selected npm as package manager
+```
+
+### Execução do projeto novo
+
+```shell
+cd project-manager-api
+npm run start
+# npm run start:dev - to watch files
+```
+
