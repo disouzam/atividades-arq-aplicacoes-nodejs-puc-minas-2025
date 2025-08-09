@@ -68,10 +68,13 @@ nest new project-manager-api
 # selected npm as package manager
 ```
 
+### Pós-criação
+
+Após a criação do projeto, os arquivos da pasta `project-manager-api` foram movidos para a raiz do repositório e a pasta `project-manager-api` foi removida. Com isso, o script para executar o projeto recém-criado foi alterado, removendo a necessidade de alterar o diretório do shell.
+
 ### Execução do projeto novo
 
 ```shell
-cd project-manager-api
 npm run start
 # npm run start:dev - to watch files
 ```
