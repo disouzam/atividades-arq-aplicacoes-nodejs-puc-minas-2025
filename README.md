@@ -131,9 +131,15 @@ echo > src/infrastructure/database/repositories/.gitignore
 ### Criação dos primeiros arquivos de código
 
 ```shell
+# Controllers
 echo > src/gateways/controllers/controller.module.ts
 # [Controllers](https://docs.nestjs.com/controllers)
 nest g controller gateways/controllers/projects
 nest g controller gateways/controllers/tasks
 nest g controller gateways/controllers/users
+
+# Interfaces
+echo > src/domain/interfaces/user.interface.ts
+echo > src/domain/interfaces/task.interface.ts
+echo > src/domain/interfaces/project.interface.ts
 ```
