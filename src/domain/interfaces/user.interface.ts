@@ -1,5 +1,5 @@
-import {IProject} from './project.interface';
-import {ITask} from './task.interface';
+import { IProject } from './project.interface';
+import { ITask } from './task.interface';
 
 export interface IUser {
   id: number;
