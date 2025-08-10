@@ -142,4 +142,9 @@ nest g controller gateways/controllers/users
 echo > src/domain/interfaces/user.interface.ts
 echo > src/domain/interfaces/task.interface.ts
 echo > src/domain/interfaces/project.interface.ts
+
+# Entities
+echo > src/domain/entities/project.ts
+echo > src/domain/entities/task.ts
+echo > src/domain/entities/user.ts
 ```
