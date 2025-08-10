@@ -72,6 +72,11 @@ nest new project-manager-api
 
 Após a criação do projeto, os arquivos da pasta `project-manager-api` foram movidos para a raiz do repositório e a pasta `project-manager-api` foi removida. Com isso, o script para executar o projeto recém-criado foi alterado, removendo a necessidade de alterar o diretório do shell.
 
+```shell
+mv ./project-manager-api/* ./
+rm -r ./project-manager-api
+```
+
 ### Execução do projeto novo
 
 ```shell
@@ -79,3 +84,47 @@ npm run start
 # npm run start:dev - to watch files
 ```
 
+### Criação de estrutura de pastas para a arquitetura limpa usando domain driven design
+
+```shell
+# Create folders
+mkdir src/domain
+mkdir src/domain/entities
+mkdir src/domain/interfaces
+mkdir src/domain/use-cases
+mkdir src/domain/use-cases/projects
+mkdir src/domain/use-cases/tasks
+mkdir src/domain/use-cases/users
+mkdir src/gateways
+mkdir src/gateways/controllers
+mkdir src/gateways/controllers/projects
+mkdir src/gateways/controllers/tasks
+mkdir src/gateways/controllers/users
+mkdir src/gateways/guards
+mkdir src/infrastructure
+mkdir src/infrastructure/auth
+mkdir src/infrastructure/database
+mkdir src/infrastructure/database/entities
+mkdir src/infrastructure/database/repositories
+
+# Add empty .gitignore in each one to preserve folder structure while no file is added
+echo > src/domain/.gitignore
+echo > src/domain/entities/.gitignore
+echo > src/domain/interfaces/.gitignore
+echo > src/domain/use-cases/.gitignore
+echo > src/domain/use-cases/projects/.gitignore
+echo > src/domain/use-cases/tasks/.gitignore
+echo > src/domain/use-cases/users/.gitignore
+echo > src/gateways/.gitignore
+echo > src/gateways/controllers/.gitignore
+echo > src/gateways/controllers/projects/.gitignore
+echo > src/gateways/controllers/tasks/.gitignore
+echo > src/gateways/controllers/users/.gitignore
+echo > src/gateways/guards/.gitignore
+echo > src/infrastructure/.gitignore
+echo > src/infrastructure/auth/.gitignore
+echo > src/infrastructure/database/.gitignore
+echo > src/infrastructure/database/entities/.gitignore
+echo > src/infrastructure/database/repositories/.gitignore
+
+```
