@@ -126,5 +126,14 @@ echo > src/infrastructure/auth/.gitignore
 echo > src/infrastructure/database/.gitignore
 echo > src/infrastructure/database/entities/.gitignore
 echo > src/infrastructure/database/repositories/.gitignore
+```
 
+### Criação dos primeiros arquivos de código
+
+```shell
+echo > src/gateways/controllers/controller.module.ts
+# [Controllers](https://docs.nestjs.com/controllers)
+nest g controller gateways/controllers/projects
+nest g controller gateways/controllers/tasks
+nest g controller gateways/controllers/users
 ```
