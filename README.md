@@ -202,4 +202,6 @@ nest g module gateways
 nest g service domain/use-cases/projects/get-all-projects --flat
 nest g service domain/use-cases/projects/get-project-by-id --flat
 nest g service domain/use-cases/projects/create-project --flat
+
+nest g service domain/use-cases/tasks/get-all-tasks –-flat
 ```

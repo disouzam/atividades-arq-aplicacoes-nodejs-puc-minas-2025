@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { GetAllTasksService } from './get-all-tasks.service';
 
-@Module({})
+@Module({
+  providers: [GetAllTasksService]
+})
 export class TasksModule {}
