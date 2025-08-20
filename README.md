@@ -179,4 +179,5 @@ nest g module domain/use-cases
 nest g module domain/use-cases/projects
 nest g module domain/use-cases/tasks
 nest g module domain/use-cases/users
+nest g module infrastructure
 ```
