@@ -211,3 +211,11 @@ nest g service domain/use-cases/tasks/update-task --flat
 nest g service domain/use-cases/users/create-user --flat
 nest g service domain/use-cases/users/get-user-by-id --flat
 ```
+
+#### Repositórios
+
+```shell
+nest g service infrastructure/database/repositories/projects.repository --flat --no-spec
+nest g service infrastructure/database/repositories/tasks.repository --flat --no-spec
+nest g service infrastructure/database/repositories/users.repository --flat --no-spec
+```
