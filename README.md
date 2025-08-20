@@ -148,3 +148,25 @@ echo > src/domain/entities/project.ts
 echo > src/domain/entities/task.ts
 echo > src/domain/entities/user.ts
 ```
+
+### Atividade 2 - Arquitetura Clean
+
+Instalação das dependências adicionais
+```shell
+# [TypeORM module for Nest](https://www.npmjs.com/package/@nestjs/typeorm)
+# [TypeORM repository](https://github.com/nestjs/typeorm)
+
+# [TypeORM is an ORM that can run in Node.js, Browser, Cordova, Ionic, React Native, NativeScript, Expo, and Electron platforms and can be used with TypeScript and JavaScript (ES2021)](https://www.npmjs.com/package/typeorm)
+# [ORM for TypeScript and JavaScript](https://github.com/typeorm/typeorm)
+
+# [Asynchronous, non-blocking SQLite3 bindings for Node.js](https://www.npmjs.com/package/sqlite3)
+# [SQLite3 bindings for Node.js repository](https://github.com/TryGhost/node-sqlite3)
+
+# [Allows use of decorator and non-decorator based validation. Internally uses validator.js to perform validation. Class-validator works on both browser and node.js platforms.](https://www.npmjs.com/package/class-validator)
+# [Decorator-based property validation for classes.](https://github.com/typestack/class-validator)
+
+# [Class-transformer allows you to transform plain object to some instance of class and versa](https://www.npmjs.com/package/class-transformer)
+# [Decorator-based transformation, serialization, and deserialization between objects and classes.](https://github.com/typestack/class-transformer)
+
+npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transformer
+```
