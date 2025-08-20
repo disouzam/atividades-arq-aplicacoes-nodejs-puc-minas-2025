@@ -15,12 +15,14 @@ echo > .gitattributes
 ## Verificação da versão do Node.JS
 
 Checar a versão ativa do Node.JS
+
 ```shell
 node --version
 # v24.5.0 (latest version)
 ```
 
 Checar as versões instaladas usando o nvm:
+
 ```shell
 nwm ls
 #        v22.18.0
@@ -160,6 +162,7 @@ echo > src/domain/entities/user.ts
 ### Atividade 2 - Arquitetura Clean
 
 Instalação das dependências adicionais
+
 ```shell
 # [TypeORM module for Nest](https://www.npmjs.com/package/@nestjs/typeorm)
 # [TypeORM repository](https://github.com/nestjs/typeorm)
@@ -191,4 +194,10 @@ nest g module infrastructure
 nest g module infrastructure/database
 nest g module infrastructure/auth
 nest g module gateways
+```
+
+#### Casos de uso
+
+```shell
+nest g service domain/use-cases/projects/get-all-projects --flat
 ```
