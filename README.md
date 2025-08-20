@@ -4,6 +4,14 @@ Repositório contendo as atividades da disciplina Arquitetura de Aplicações co
 
 # Setup do ambiente de desenvolvimento
 
+## Configuração do arquivo .gitattributes
+
+[CRLF vs. LF: Normalizing Line Endings in Git](https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/)
+
+```shell
+echo > .gitattributes
+```
+
 ## Verificação da versão do Node.JS
 
 Checar a versão ativa do Node.JS
