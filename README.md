@@ -205,4 +205,5 @@ nest g service domain/use-cases/projects/create-project --flat
 
 nest g service domain/use-cases/tasks/get-all-tasks --flat
 nest g service domain/use-cases/tasks/get-task-by-id --flat
+nest g service domain/use-cases/tasks/create-task --flat
 ```
