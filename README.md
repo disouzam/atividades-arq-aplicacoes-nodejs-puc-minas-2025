@@ -182,4 +182,5 @@ nest g module domain/use-cases/users
 nest g module infrastructure
 nest g module infrastructure/database
 nest g module infrastructure/auth
+nest g module gateways
 ```
