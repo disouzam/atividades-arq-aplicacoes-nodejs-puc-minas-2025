@@ -209,4 +209,5 @@ nest g service domain/use-cases/tasks/create-task --flat
 nest g service domain/use-cases/tasks/update-task --flat
 
 nest g service domain/use-cases/users/create-user --flat
+nest g service domain/use-cases/users/get-user-by-id --flat
 ```
