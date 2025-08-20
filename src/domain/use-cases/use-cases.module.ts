@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ProjectsModule } from './projects/projects.module';
 
-@Module({})
+@Module({
+  imports: [ProjectsModule]
+})
 export class UseCasesModule {}

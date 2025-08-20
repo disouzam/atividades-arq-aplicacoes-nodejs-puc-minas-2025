@@ -176,4 +176,5 @@ npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transfo
 ```shell
 nest g module domain
 nest g module domain/use-cases
+nest g module domain/use-cases/projects
 ```
