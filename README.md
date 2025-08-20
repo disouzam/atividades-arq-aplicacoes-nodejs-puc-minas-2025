@@ -170,3 +170,9 @@ Instalação das dependências adicionais
 
 npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transformer
 ```
+
+#### Estrutura dos módulos
+
+```shell
+nest g module domain
+```
