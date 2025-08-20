@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ControllersModule} from './controllers/controllers.module';
+import { ControllerModule } from './controllers/controller.module';
 
 @Module({
-    imports: [ControllersModule],
+  imports: [ControllerModule],
 })
-
 export class GatewaysModule {}
