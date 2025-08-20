@@ -200,4 +200,6 @@ nest g module gateways
 
 ```shell
 nest g service domain/use-cases/projects/get-all-projects --flat
+nest g service domain/use-cases/projects/get-project-by-id --flat
+nest g service domain/use-cases/projects/create-project --flat
 ```
