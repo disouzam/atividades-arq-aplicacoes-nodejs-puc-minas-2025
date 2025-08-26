@@ -227,3 +227,12 @@ echo > src/infrastructure/database/entities/project.entity.ts
 echo > src/infrastructure/database/entities/task.entity.ts
 echo > src/infrastructure/database/entities/user.entity.ts
 ```
+
+#### Implementação dos repositórios
+
+```shell
+mkdir src/domain/repositories
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/projects-repository.interface.ts
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/tasks-repository.interface.ts
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/users-repository.interface.ts
+```
