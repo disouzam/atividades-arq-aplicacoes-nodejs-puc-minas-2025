@@ -278,3 +278,9 @@ mkdir src/gateways/controllers/users/dtos
 echo > src/gateways/controllers/users/dtos/create-user.dto.ts
 echo > src/gateways/controllers/users/dtos/update-user.dto.ts
 ```
+
+Interface para implementação dos casos de uso
+
+```shell
+echo > src/domain/use-cases/base-use-case.ts
+```
