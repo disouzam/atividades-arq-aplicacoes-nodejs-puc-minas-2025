@@ -180,6 +180,10 @@ Instalação das dependências adicionais
 # [Decorator-based transformation, serialization, and deserialization between objects and classes.](https://github.com/typestack/class-transformer)
 
 npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transformer
+
+# [Mapped Types module for Nest used by the @nestjs/graphql and @nestjs/swagger packages.](https://www.npmjs.com/package/@nestjs/mapped-types)
+# [Configuration module for Nest framework (node.js) 🐺](https://github.com/nestjs/mapped-types)
+npm install --save @nestjs/mapped-types
 ```
 
 #### Estrutura dos módulos
