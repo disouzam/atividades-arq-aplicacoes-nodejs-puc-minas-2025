@@ -1,5 +1,6 @@
 {
     "files.eol": "\n",
     "files.insertFinalNewline": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
 }
