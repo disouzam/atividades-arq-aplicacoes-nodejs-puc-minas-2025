@@ -232,7 +232,29 @@ echo > src/infrastructure/database/entities/user.entity.ts
 
 ```shell
 mkdir src/domain/repositories
+
+# Interfaces
 echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/projects-repository.interface.ts
 echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/tasks-repository.interface.ts
 echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/users-repository.interface.ts
+
+# Implementations
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/projects.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/projects.repository.service.ts
+
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+
+
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/users.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/users.repository.service.ts
+echo >> src/infrastructure/database/repositories/users.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/users.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/users.repository.service.ts
 ```
