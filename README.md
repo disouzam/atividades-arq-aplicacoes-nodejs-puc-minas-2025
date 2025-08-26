@@ -258,3 +258,19 @@ echo >> src/infrastructure/database/repositories/users.repository.service.ts
 echo "@Injectable()" >> src/infrastructure/database/repositories/users.repository.service.ts
 echo "export class" >> src/infrastructure/database/repositories/users.repository.service.ts
 ```
+
+#### Implementação dos casos de uso
+
+```shell
+mkdir src/gateways/controllers/projects/dtos
+echo > src/gateways/controllers/projects/dtos/create-project.dto.ts
+echo > src/gateways/controllers/projects/dtos/update-project.dto.ts
+
+mkdir src/gateways/controllers/tasks/dtos
+echo > src/gateways/controllers/tasks/dtos/create-task.dto.ts
+echo > src/gateways/controllers/tasks/dtos/update-task.dto.ts
+
+mkdir src/gateways/controllers/users/dtos
+echo > src/gateways/controllers/users/dtos/create-user.dto.ts
+echo > src/gateways/controllers/users/dtos/update-user.dto.ts
+```
