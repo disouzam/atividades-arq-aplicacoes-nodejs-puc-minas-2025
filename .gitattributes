@@ -1,9 +1,16 @@
 # https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/
 # All files are checked into the repo with LF
-* text=auto
+# * text=auto
 
 # These files are checked out using CRLF locally
 *.bat eol=crlf
 
 *.ts eol=lf
 *.js eol=lf
+*.json eol=lf
+*.md eol=lf
+*.gitignore eol=lf
+*.gitattributes eol=lf
+*.prettierrc eol=lf
+*.eslintrc.json eol=lf
+
