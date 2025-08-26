@@ -219,3 +219,11 @@ nest g service infrastructure/database/repositories/projects.repository --flat -
 nest g service infrastructure/database/repositories/tasks.repository --flat --no-spec
 nest g service infrastructure/database/repositories/users.repository --flat --no-spec
 ```
+
+#### Entidades
+
+```shell
+echo > src/infrastructure/database/entities/project.entity.ts
+echo > src/infrastructure/database/entities/task.entity.ts
+echo > src/infrastructure/database/entities/user.entity.ts
+```
