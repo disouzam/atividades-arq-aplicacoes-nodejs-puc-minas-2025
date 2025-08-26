@@ -12,9 +12,8 @@ export class UsersRepositoryService
   constructor(dataSource: DataSource) {
     super(UserEntity, dataSource.createEntityManager());
   }
-
-  findById(id: number): Promise<IUser> {
-    return this.findOneBy({ id });
+  findById(id: number): Promise<IUser | null> {
+    throw new Error('Method not implemented.');
   }
 
   add(payload: DeepPartial<IUser>): Promise<IUser> {
