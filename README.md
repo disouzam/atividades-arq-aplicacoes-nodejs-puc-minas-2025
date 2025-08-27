@@ -4,15 +4,25 @@ Repositório contendo as atividades da disciplina Arquitetura de Aplicações co
 
 # Setup do ambiente de desenvolvimento
 
+## Configuração do arquivo .gitattributes
+
+[CRLF vs. LF: Normalizing Line Endings in Git](https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/)
+
+```shell
+echo > .gitattributes
+```
+
 ## Verificação da versão do Node.JS
 
 Checar a versão ativa do Node.JS
+
 ```shell
 node --version
 # v24.5.0 (latest version)
 ```
 
 Checar as versões instaladas usando o nvm:
+
 ```shell
 nwm ls
 #        v22.18.0
@@ -147,4 +157,130 @@ echo > src/domain/interfaces/project.interface.ts
 echo > src/domain/entities/project.ts
 echo > src/domain/entities/task.ts
 echo > src/domain/entities/user.ts
+```
+
+### Atividade 2 - Arquitetura Clean
+
+Instalação das dependências adicionais
+
+```shell
+# [TypeORM module for Nest](https://www.npmjs.com/package/@nestjs/typeorm)
+# [TypeORM repository](https://github.com/nestjs/typeorm)
+
+# [TypeORM is an ORM that can run in Node.js, Browser, Cordova, Ionic, React Native, NativeScript, Expo, and Electron platforms and can be used with TypeScript and JavaScript (ES2021)](https://www.npmjs.com/package/typeorm)
+# [ORM for TypeScript and JavaScript](https://github.com/typeorm/typeorm)
+
+# [Asynchronous, non-blocking SQLite3 bindings for Node.js](https://www.npmjs.com/package/sqlite3)
+# [SQLite3 bindings for Node.js repository](https://github.com/TryGhost/node-sqlite3)
+
+# [Allows use of decorator and non-decorator based validation. Internally uses validator.js to perform validation. Class-validator works on both browser and node.js platforms.](https://www.npmjs.com/package/class-validator)
+# [Decorator-based property validation for classes.](https://github.com/typestack/class-validator)
+
+# [Class-transformer allows you to transform plain object to some instance of class and versa](https://www.npmjs.com/package/class-transformer)
+# [Decorator-based transformation, serialization, and deserialization between objects and classes.](https://github.com/typestack/class-transformer)
+
+npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transformer
+
+# [Mapped Types module for Nest used by the @nestjs/graphql and @nestjs/swagger packages.](https://www.npmjs.com/package/@nestjs/mapped-types)
+# [Configuration module for Nest framework (node.js) 🐺](https://github.com/nestjs/mapped-types)
+npm install --save @nestjs/mapped-types
+```
+
+#### Estrutura dos módulos
+
+```shell
+nest g module domain
+nest g module domain/use-cases
+nest g module domain/use-cases/projects
+nest g module domain/use-cases/tasks
+nest g module domain/use-cases/users
+nest g module infrastructure
+nest g module infrastructure/database
+nest g module infrastructure/auth
+nest g module gateways
+```
+
+#### Casos de uso
+
+```shell
+nest g service domain/use-cases/projects/get-all-projects --flat
+nest g service domain/use-cases/projects/get-project-by-id --flat
+nest g service domain/use-cases/projects/create-project --flat
+
+nest g service domain/use-cases/tasks/get-all-tasks --flat
+nest g service domain/use-cases/tasks/get-task-by-id --flat
+nest g service domain/use-cases/tasks/create-task --flat
+nest g service domain/use-cases/tasks/update-task --flat
+
+nest g service domain/use-cases/users/create-user --flat
+nest g service domain/use-cases/users/get-user-by-id --flat
+```
+
+#### Repositórios
+
+```shell
+nest g service infrastructure/database/repositories/projects.repository --flat --no-spec
+nest g service infrastructure/database/repositories/tasks.repository --flat --no-spec
+nest g service infrastructure/database/repositories/users.repository --flat --no-spec
+```
+
+#### Entidades
+
+```shell
+echo > src/infrastructure/database/entities/project.entity.ts
+echo > src/infrastructure/database/entities/task.entity.ts
+echo > src/infrastructure/database/entities/user.entity.ts
+```
+
+#### Implementação dos repositórios
+
+```shell
+mkdir src/domain/repositories
+
+# Interfaces
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/projects-repository.interface.ts
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/tasks-repository.interface.ts
+echo "import { DeepPartial } from 'typeorm';" > src/domain/repositories/users-repository.interface.ts
+
+# Implementations
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/projects.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/projects.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/projects.repository.service.ts
+
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/tasks.repository.service.ts
+
+
+echo "import { Injectable } from '@nestjs/common';" > src/infrastructure/database/repositories/users.repository.service.ts
+echo "import { DataSource, DeepPartial, Repository } from 'typeorm';" >> src/infrastructure/database/repositories/users.repository.service.ts
+echo >> src/infrastructure/database/repositories/users.repository.service.ts
+echo "@Injectable()" >> src/infrastructure/database/repositories/users.repository.service.ts
+echo "export class" >> src/infrastructure/database/repositories/users.repository.service.ts
+```
+
+#### Implementação dos casos de uso
+
+```shell
+mkdir src/gateways/controllers/projects/dtos
+echo > src/gateways/controllers/projects/dtos/create-project.dto.ts
+echo > src/gateways/controllers/projects/dtos/update-project.dto.ts
+
+mkdir src/gateways/controllers/tasks/dtos
+echo > src/gateways/controllers/tasks/dtos/create-task.dto.ts
+echo > src/gateways/controllers/tasks/dtos/update-task.dto.ts
+
+mkdir src/gateways/controllers/users/dtos
+echo > src/gateways/controllers/users/dtos/create-user.dto.ts
+echo > src/gateways/controllers/users/dtos/update-user.dto.ts
+```
+
+Interface para implementação dos casos de uso
+
+```shell
+echo > src/domain/use-cases/base-use-case.ts
 ```
