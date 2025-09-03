@@ -13,7 +13,7 @@ export class UsersRepositoryService
     super(UserEntity, dataSource.createEntityManager());
   }
   findById(id: number): Promise<IUser | null> {
-    throw new Error('Method not implemented.');
+    return this.findOneBy({ id });
   }
 
   add(payload: DeepPartial<IUser>): Promise<IUser> {
