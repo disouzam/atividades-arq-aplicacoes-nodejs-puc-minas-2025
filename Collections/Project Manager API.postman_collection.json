@@ -24,11 +24,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/auth/login",
+							"raw": "{{API_URL}}/auth/login",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"auth",
 								"login"
@@ -66,11 +65,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/tasks",
+							"raw": "{{API_URL}}/tasks",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"tasks"
 							]
@@ -100,11 +98,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/tasks",
+							"raw": "{{API_URL}}/tasks",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"tasks"
 							]
@@ -118,11 +115,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/tasks/1",
+							"raw": "{{API_URL}}/tasks/1",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"tasks",
 								"1"
@@ -151,11 +147,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/projects",
+							"raw": "{{API_URL}}/projects",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"projects"
 							]
@@ -169,11 +164,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/projects",
+							"raw": "{{API_URL}}/projects",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"projects"
 							]
@@ -187,11 +181,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/projects/1",
+							"raw": "{{API_URL}}/projects/1",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"projects",
 								"1"
@@ -223,11 +216,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users",
+							"raw": "{{API_URL}}/users",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -253,11 +245,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/1",
+							"raw": "{{API_URL}}/users/1",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"1"
@@ -281,11 +272,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users",
+							"raw": "{{API_URL}}/users",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
