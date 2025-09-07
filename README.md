@@ -285,3 +285,28 @@ Interface para implementação dos casos de uso
 ```shell
 echo > src/domain/use-cases/base-use-case.ts
 ```
+
+#### Testes da API implementada até a atividade 2 usando Postman e Newman
+
+Instalação do newman usando a linha de comando
+
+```shell
+# https://learning.postman.com/docs/collections/using-newman-cli/installing-running-newman/
+npm install -g newman
+```
+
+Instruções básicas de uso do newman
+
+```shell
+Usage: newman [options] [command]
+
+Options:
+  -v, --version               output the version number
+  -h, --help                  display help for command
+
+Commands:
+  run [options] <collection>  Initiate a Postman Collection run from a given URL or path
+
+To get available options for a command:
+  newman <command> -h
+```
