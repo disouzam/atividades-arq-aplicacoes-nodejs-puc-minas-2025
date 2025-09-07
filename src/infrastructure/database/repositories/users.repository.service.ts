@@ -12,8 +12,13 @@ export class UsersRepositoryService
   constructor(dataSource: DataSource) {
     super(UserEntity, dataSource.createEntityManager());
   }
+
+  findAll(): Promise<IUser[]> {
+    return this.findAll();
+  }
+
   findById(id: number): Promise<IUser | null> {
-    throw new Error('Method not implemented.');
+    return this.findOneBy({ id });
   }
 
   add(payload: DeepPartial<IUser>): Promise<IUser> {

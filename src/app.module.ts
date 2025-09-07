@@ -7,7 +7,12 @@ import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { GatewaysModule } from './gateways/gateways.module';
 
 @Module({
-  imports: [ControllerModule, DomainModule, InfrastructureModule, GatewaysModule],
+  imports: [
+    ControllerModule,
+    DomainModule,
+    InfrastructureModule,
+    GatewaysModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

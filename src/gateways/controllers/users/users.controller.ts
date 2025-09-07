@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserService } from 'src/domain/use-cases/users/create-user.service';
 import { GetUserByIdService } from 'src/domain/use-cases/users/get-user-by-id.service';
+import { GetAllUsersService } from 'src/domain/use-cases/users/get-all-users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 
 @Controller('users')
@@ -16,7 +17,17 @@ export class UsersController {
   constructor(
     private readonly getUserUseCase: GetUserByIdService,
     private readonly createUserUseCase: CreateUserService,
+    private readonly getAllUsersUseCase: GetAllUsersService,
   ) {}
+
+  @Get()
+  async findAll() {
+    try {
+      return await this.getAllUsersUseCase.execute();
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
 
   @Get(':id')
   async findOne(@Param('id') id: number) {
