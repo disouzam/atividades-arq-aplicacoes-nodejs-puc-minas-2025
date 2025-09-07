@@ -214,6 +214,7 @@ nest g service domain/use-cases/tasks/update-task --flat
 
 nest g service domain/use-cases/users/create-user --flat
 nest g service domain/use-cases/users/get-user-by-id --flat
+nest g service domain/use-cases/users/get-all-users --flat
 ```
 
 #### Repositórios
