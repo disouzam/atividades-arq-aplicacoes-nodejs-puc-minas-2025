@@ -91,9 +91,6 @@ const getResponseLog = (res: Response) => {
     // Join together all collected Buffers then encode as utf8 string
     const body = Buffer.concat(chunkBuffers).toString('utf8');
 
-    // Set custom header for response
-    res.setHeader('origin', 'restjs-req-res-logging-repo');
-
     const responseLog = {
       response: {
         statusCode: res.statusCode,
