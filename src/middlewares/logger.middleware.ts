@@ -6,6 +6,10 @@ import { Request, Response, NextFunction } from 'express';
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
+    console.log(
+      `Starting request ${req.method} ${req.baseUrl}...\n>>>Parameters: ${JSON.stringify(req.params)}\n`,
+    );
+
     // Getting the request log
     getRequestLog(req);
 
