@@ -7,11 +7,7 @@ import { Request, Response, NextFunction } from 'express';
 export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     // Getting the request log
-    console.log(`req:`, {
-      headers: req.headers,
-      body: req.body,
-      originalUrl: req.originalUrl,
-    });
+    getRequestLog(req);
 
     // Getting the response log
     getResponseLog(res);
@@ -21,6 +17,14 @@ export class LoggerMiddleware implements NestMiddleware {
     }
   }
 }
+
+const getRequestLog = (req: Request) => {
+  console.log(`req:`, {
+    headers: req.headers,
+    body: req.body,
+    originalUrl: req.originalUrl,
+  });
+};
 
 const getResponseLog = (res: Response) => {
   const rawResponse = res.write;
