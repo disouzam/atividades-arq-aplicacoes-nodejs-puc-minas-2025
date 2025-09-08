@@ -23,7 +23,7 @@ export class LoggerMiddleware implements NestMiddleware {
 }
 
 const getRequestLog = (req: Request) => {
-  console.log(`req:`, {
+  console.log(`\nRequest:`, {
     headers: req.headers,
     body: req.body,
     originalUrl: req.originalUrl,
@@ -40,7 +40,6 @@ const getResponseLog = (res: Response) => {
   // Take chunks as a rest parameter since it is an array. This allows applying Array methods directly (ref MDN)
   // res.write below is in object mode for write to avoid needing encoding arg (https://nodejs.org/api/stream.html#writable_writevchunks-callback)
 
-  console.log(`======>> Beginning res.write`);
   res.write = (...chunks) => {
     // Not able to console.log in res.write: It is a writable stream
     const resArgs = [];
@@ -74,22 +73,9 @@ const getResponseLog = (res: Response) => {
     return rawResponse.apply(res, resArgs);
   };
 
-  console.log(`========> Done writing, beginning res.end`);
   res.end = (...chunks) => {
-    // Will log nothing: res.write is a writable stream
-    console.log(
-      `========> Chunks gathered during res.write: ${typeof chunkBuffers}`,
-      Buffer.from(chunkBuffers).toJSON(),
-    );
-    console.log(
-      `========> Chunks to handle during res.end: ${typeof chunks}`,
-      Buffer.from(chunks).toJSON(),
-    );
-
     const resArgs = [];
     for (let i = 0; i < chunks.length; i++) {
-      console.log(`res.end chunk ${i} content: ${typeof chunks[i]}`, chunks[i]);
-
       // undefined values would break Buffer.concat(resArgs)
       if (chunks[i]) {
         // @ts-ignore
@@ -117,7 +103,7 @@ const getResponseLog = (res: Response) => {
       },
     };
 
-    console.log('res: ', responseLog);
+    console.log('\nResponse: ', responseLog);
 
     // res.end() is satisfied after passing in restArgs as params
     // Doing so creates 'end' event to indicate that the entire body has been received.
