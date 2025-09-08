@@ -38,7 +38,10 @@ const getResponseLog = (res: Response) => {
     const resArgs = [];
     for (let i = 0; i < chunks.length; i++) {
       // undefined values would break Buffer.concat(resArgs)
-      if (chunks[i]) resArgs[i] = Buffer.from(chunks[i]);
+      if (chunks[i]) {
+        // @ts-ignore
+        resArgs[i] = Buffer.from(chunks[i]);
+      }
 
       // This handling comes in when buffer is full, hence rawResponse === false after rawResponse.apply() below
       // Ref: Example under https://nodejs.org/api/stream.html#class-streamwritable
@@ -80,7 +83,10 @@ const getResponseLog = (res: Response) => {
       console.log(`res.end chunk ${i} content: ${typeof chunks[i]}`, chunks[i]);
 
       // undefined values would break Buffer.concat(resArgs)
-      if (chunks[i]) resArgs[i] = Buffer.from(chunks[i]);
+      if (chunks[i]) {
+        // @ts-ignore
+        resArgs[i] = Buffer.from(chunks[i]);
+      }
     }
 
     // resArgs[0] contains the response body
