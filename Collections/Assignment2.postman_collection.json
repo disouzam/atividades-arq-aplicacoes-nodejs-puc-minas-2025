@@ -224,7 +224,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200 - Created\", function () {\r",
+							"pm.test(\"Status code is 200 - OK\", function () {\r",
 							"  pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
@@ -279,12 +279,52 @@
 		},
 		{
 			"name": "Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"},\r",
+							"    \"user\": {\"type\": \"object\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"name\", \"description\", \"user\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"const userObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"  const response = pm.response.json();\r",
+							"  const userObject = response.user;\r",
+							"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Lista de compras do SEU NOME\",\n    \"description\": \"lista basica\"\n}",
+					"raw": "{\n    \"name\": \"Lista de compras de Dickson Souza\",\n    \"description\": \"lista basica\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
