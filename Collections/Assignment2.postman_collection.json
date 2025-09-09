@@ -163,6 +163,36 @@
 		},
 		{
 			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"firstName\": {\"type\": \"string\"},\r",
+							"    \"lastName\": {\"type\": \"string\"},\r",
+							"    \"email\": {\"type\": \"string\"},\r",
+							"    \"password\": {\"type\": \"string\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
