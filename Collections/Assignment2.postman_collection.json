@@ -393,14 +393,7 @@
 			"name": "Create Task",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiZW1haWxAZW1haWwyLmNvbSIsImlhdCI6MTcyNTMyMzM5NiwiZXhwIjoxNzI1MzI2OTk2fQ.jseJEB1mtBTjHVqBRral7Noqcd7jILCvw5Mg_W5xr0I",
-						"type": "text",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"name\": \"Comprar curso de nest para SEU NOME\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
