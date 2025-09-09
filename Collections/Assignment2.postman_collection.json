@@ -391,12 +391,65 @@
 		},
 		{
 			"name": "Create Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"status\": {\"type\": \"string\"},\r",
+							"    \"project\": {\"type\": \"object\"},\r",
+							"    \"user\": {\"type\": \"object\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"name\", \"status\", \"user\", \"project\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"const projectObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"}\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"name\", \"description\"]\r",
+							"};\r",
+							"\r",
+							"const userObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"  const response = pm.response.json();\r",
+							"  const userObject = response.user;\r",
+							"  const projectObject = response.project;\r",
+							"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+							"  pm.expect(projectObject).to.have.jsonSchema(projectObjectSchema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Comprar curso de nest para SEU NOME\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
+					"raw": "{\n    \"name\": \"Comprar curso de NestJS para Dickson Souza\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
