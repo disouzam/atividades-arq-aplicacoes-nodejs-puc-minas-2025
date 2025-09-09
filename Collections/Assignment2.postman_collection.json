@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "71046fc2-f44a-4af2-a2df-0427789304c7",
+		"name": "Assignment2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15107572"
+	},
+	"item": [
+		{
+			"name": "Get All Users - Empty List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect an empty list of users\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"  pm.expect(jsonData).to.eql([]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/users",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Projects - Empty List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"  pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"\r",
+							"  const expectedValue = {\r",
+							"    \"message\": \"Usuário não encontrado\",\r",
+							"    \"error\": \"Not Found\",\r",
+							"    \"statusCode\": 404\r",
+							"  };\r",
+							"\r",
+							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/projects",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks - Empty List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"  pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"\r",
+							"  const expectedValue = {\r",
+							"    \"message\": \"Usuário não encontrado\",\r",
+							"    \"error\": \"Not Found\",\r",
+							"    \"statusCode\": 404\r",
+							"  };\r",
+							"\r",
+							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/tasks",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"firstName\": {\"type\": \"string\"},\r",
+							"    \"lastName\": {\"type\": \"string\"},\r",
+							"    \"email\": {\"type\": \"string\"},\r",
+							"    \"password\": {\"type\": \"string\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Dickson\",\n    \"lastName\": \"Souza\",\n    \"email\": \"36424026+disouzam@users.noreply.github.com\",\n    \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/users",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - OK\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"firstName\": {\"type\": \"string\"},\r",
+							"    \"lastName\": {\"type\": \"string\"},\r",
+							"    \"email\": {\"type\": \"string\"},\r",
+							"    \"password\": {\"type\": \"string\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/users/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"},\r",
+							"    \"user\": {\"type\": \"object\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"name\", \"description\", \"user\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"const userObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"  const response = pm.response.json();\r",
+							"  const userObject = response.user;\r",
+							"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lista de compras de Dickson Souza\",\n    \"description\": \"lista basica\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/projects",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - OK\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"name\", \"description\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/projects/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"projects",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"status\": {\"type\": \"string\"},\r",
+							"    \"project\": {\"type\": \"object\"},\r",
+							"    \"user\": {\"type\": \"object\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"name\", \"status\", \"user\", \"project\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"const projectObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"}\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"name\", \"description\"]\r",
+							"};\r",
+							"\r",
+							"const userObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"  const response = pm.response.json();\r",
+							"  const userObject = response.user;\r",
+							"  const projectObject = response.project;\r",
+							"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+							"  pm.expect(projectObject).to.have.jsonSchema(projectObjectSchema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Comprar curso de NestJS para Dickson Souza\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/tasks",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - OK\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"status\": {\"type\": \"string\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"name\", \"status\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/tasks/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -14,7 +14,7 @@ export class UsersRepositoryService
   }
 
   findAll(): Promise<IUser[]> {
-    return this.findAll();
+    return this.find();
   }
 
   findById(id: number): Promise<IUser | null> {

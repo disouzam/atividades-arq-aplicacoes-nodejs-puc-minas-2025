@@ -285,3 +285,70 @@ Interface para implementação dos casos de uso
 ```shell
 echo > src/domain/use-cases/base-use-case.ts
 ```
+
+#### Testes da API implementada até a atividade 2 usando Postman e Newman
+
+Instalação do newman usando a linha de comando
+
+```shell
+# https://learning.postman.com/docs/collections/using-newman-cli/installing-running-newman/
+npm install -g newman
+```
+
+Instruções básicas de uso do newman
+
+```shell
+Usage: newman [options] [command]
+
+Options:
+  -v, --version               output the version number
+  -h, --help                  display help for command
+
+Commands:
+  run [options] <collection>  Initiate a Postman Collection run from a given URL or path
+
+To get available options for a command:
+  newman <command> -h
+```
+
+Os arquivos do Postman foram organizados em Collections e Environments e um script global do PowerShell, chamado `Global.CollectionRunner.ps1` foi criado para executar todas as requisições de uma dada coleção de forma automatizada, permitindo salvar logs em arquivo para posterior avaliação.
+
+Uma das possíveis formas de chamar esse script global é
+
+```PowerShell
+.\Global.CollectionRunner.ps1 -WriteLog yes -LocalEnvironment yes -Verbosity yes
+```
+
+Internamente ao script, chama-se um ou mais scripts do PowerShell para rodar cada coleção individual. No presente momento, há apenas um script `Assignment2.CollectionRunner.ps1` que executa toda a coleção Assignment em um comando similar ao apresentado abaixo:
+
+```PowerShell
+newman run "$($collectionFileName)" --insecure -e "../Environments/$($envFile)" --verbose | Out-File -FilePath "$($collectionName).log" -Encoding oem
+```
+
+e o sumário de uma execução bem sucedida é apresentado no arquivo `Collections\Assignment2.log` conforme mostrado abaixo:
+
+```
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                   9 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   9 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   0 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                  18 │                  0 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 1201ms                                         │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 831B (approx)                                 │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 39ms [min: 8ms, max: 132ms, s.d.: 38ms]     │
+├────────────────────────────────────────────────────────────────────┤
+│ average DNS lookup time: 903µs [min: 903µs, max: 903µs, s.d.: 0µs] │
+├────────────────────────────────────────────────────────────────────┤
+│ average first byte time: 36ms [min: 6ms, max: 129ms, s.d.: 39ms]   │
+└────────────────────────────────────────────────────────────────────┘
+```
