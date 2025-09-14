@@ -504,3 +504,18 @@ Com o objetivo de resolver o conflito, tentar-se-á forçar a resolução de dep
 # Modified command
 npm install --save bcrypt @types/bcrypt @nestjs/jwt @nestjs/cache-manager@2 cache-manager@5 cache-manager-redis-store@2 redis --legacy-peer-deps
 ```
+
+### Novos módulos de infraestrutura
+
+Novos módulos serão criados conforme os comandos listados abaixo:
+
+```shell
+nest g module infrastructure/redis
+nest g module infrastructure/auth # (it didn't have any impact due to commands executed before)
+```
+
+Um novo serviço será criado dentro da pasta `auth`:
+
+```shell
+nest g service infrastructure/auth/auth --flat
+```
