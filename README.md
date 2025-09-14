@@ -352,3 +352,88 @@ e o sumário de uma execução bem sucedida é apresentado no arquivo `Collectio
 │ average first byte time: 36ms [min: 6ms, max: 129ms, s.d.: 39ms]   │
 └────────────────────────────────────────────────────────────────────┘
 ```
+
+#### Capturas de tela dos testes usando o Postman e registro do banco de dados
+
+Após a inicialização da aplicação, sem arquivo prévio de banco de dados, foram realizadas requisições para a API usando o Postman e os resultados e testes embutidos no Postman serão apresentados a seguir. A Figura 1 mostra o estado da aplicação logo após o startup usando o comando `npm run start`:
+
+**Figura 1:** Estado da aplicação após a inicialização
+![Startup da aplicação](./atividade-2-pictures/00-application-startup.png)
+
+As primeiras três requisições ao banco visavam registrar o estado inicial do banco de dados - sem usuários, projetos e tarefas. As Figuras 2, 3, 4, 5, 6 e 7 mostram as requisições e os respectivos testes escritos em Javascript na interface do Postman - que podem ser conferidos diretamente na coleção [Assignment2.postman_collection.json](./Collections/Assignment2.postman_collection.json)
+
+**Figura 2**: Requisição para retornar todos os usuários do banco - Banco de dados vazio
+![GET All Users - Lista vazia](./atividade-2-pictures/01-GET-All-Users-EmptyList.png)
+
+**Figura 3**: Requisição para retornar todos os usuários do banco - Testes
+![GET All Users - Testes](./atividade-2-pictures/02-GET-All-Users-EmptyList-Tests.png)
+
+**Figura 4**: Requisição para retornar todos os projetos do banco - Banco de dados vazio
+![GET All Projects - Lista vazia](./atividade-2-pictures/03-GET-All-Projects-EmptyList.png)
+
+**Figura 5**: Requisição para retornar todos os projetos do banco - Testes
+![GET All Projects - Testes](./atividade-2-pictures/04-GET-All-Projects-EmptyList-Tests.png)
+
+**Figura 6**: Requisição para retornar todas as tarefas do banco - Banco de dados vazio
+![GET All Tasks - Lista vazia](./atividade-2-pictures/05-GET-All-Tasks-EmptyList.png)
+
+**Figura 7**: Requisição para retornar todas as tarefas do banco - Testes
+![GET All Tasks - Testes](./atividade-2-pictures/06-GET-All-Tasks-EmptyList-Tests.png)
+
+As próximas operações consistem da criação de um usuário (Figuras 8 e 9), um projeto para esse usuário (Figuras 12 e 13) e de uma tarefa (Figuras 16 e 17) para esse projeto e testes na própria requisição e requisição de GET por ID para checar a operação anterior de POST (Figuras 10 e 11 - Usuário; Figuras 14 e 15 - Projeto; Figuras 18 e 19 - Tarefas).
+
+**Figura 8**: Criação de um usuário - Requisição
+![Criação de novo usuário](./atividade-2-pictures/07-Create-New-User.png)
+
+**Figura 9**: Criação de um usuário - Testes
+![Criação de novo usuário - Testes](./atividade-2-pictures/08-Create-New-User-Tests.png)
+
+**Figura 10**: Consulta de usuário pelo ID - Requisição
+![Consulta de usuário por ID](./atividade-2-pictures/10-GET-User-by-ID.png)
+
+**Figura 11**: Consulta de usuário pelo ID - Testes
+![Consulta de usuário por ID](./atividade-2-pictures/11-GET-User-by-ID-Tests.png)
+
+**Figura 12**: Criação de um projeto - Requisição
+![Criação de novo projeto](./atividade-2-pictures/12-Create-New-Project.png)
+
+**Figura 13**: Criação de um projeto - Testes
+![Criação de novo projeto - Testes](./atividade-2-pictures/13-Create-New-Project-Tests.png)
+
+**Figura 14**: Consulta de projeto pelo ID - Requisição
+![Consulta de projeto por ID](./atividade-2-pictures/14-GET-Project-By-ID.png)
+
+**Figura 15**: Consulta de projeto pelo ID - Testes
+![Consulta de projeto por ID](./atividade-2-pictures/15-GET-Project-By-ID-Tests.png)
+
+**Figura 16**: Criação de uma tarefa - Requisição
+![Criação de nova tarefa](./atividade-2-pictures/16-Create-New-Task.png)
+
+**Figura 17**: Criação de uma tarefa - Testes
+![Criação de nova tarefa - Testes](./atividade-2-pictures/17-Create-New-Task-Tests.png)
+
+**Figura 18**: Consulta de tarefa pelo ID - Requisição
+![Consulta de tarefa por ID](./atividade-2-pictures/18-GET-Task-By-ID.png)
+
+**Figura 19**: Consulta de tarefa pelo ID - Testes
+![Consulta de tarefa por ID](./atividade-2-pictures/19-GET-Task-By-ID-Tests.png)
+
+Por fim, requisições que devem retornar coleções - Usuários, Projetos e Tarefas - foram inseridas no final da coleção para uma verificação final da sua implementação. As Figuras 20 a 25 mostram os resultados dessas requisições
+
+**Figura 20**: Requisição para retornar todos os usuários do banco - Banco de dados com 1 usuário inserido
+![GET All Users - 1 usuário inserido](./atividade-2-pictures/22-Get-All-Users-1-user.png)
+
+**Figura 21**: Requisição para retornar todos os usuários do banco - Testes
+![GET All Users - Testes](./atividade-2-pictures/23-Get-All-Users-1-user-Tests.png)
+
+**Figura 22**: Requisição para retornar todos os projetos do banco - Banco de dados com 1 projeto inserido
+![GET All Projects - 1 projeto inserido](./atividade-2-pictures/24-Get-All-Projects-1-project.png)
+
+**Figura 23**: Requisição para retornar todos os projetos do banco - Testes
+![GET All Projects - Testes](./atividade-2-pictures/25-Get-All-Projects-1-project-Tests.png)
+
+**Figura 24**: Requisição para retornar todas as tarefas do banco - Banco de dados com 1 tarefa inserida
+![GET All Tasks - 1 tarefa inserida](./atividade-2-pictures/26-Get-All-Tasks-1-task.png)
+
+**Figura 25**: Requisição para retornar todas as tarefas do banco - Testes
+![GET All Tasks - Testes](./atividade-2-pictures/27-Get-All-Tasks-1-task-Tests.png)

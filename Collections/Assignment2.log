@@ -4,16 +4,13 @@ Assignment2
 
 → Get All Users - Empty List
   GET localhost:3000/users  
-  200 OK ★ 28ms time ★ 231B↑ 235B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 27ms time ★ 231B↑ 235B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 2B
   │ []
   └
   prepare   wait   dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  7ms       7ms    903µs        765µs           14ms             4ms        182µs     35ms  
+  7ms       7ms    786µs        796µs           13ms             3ms        170µs     34ms  
 
-  ┌
-  │ []
-  └
   √  Status code is 200
   √  Expect an empty list of users
 
@@ -25,41 +22,27 @@ Assignment2
   │ ","statusCode":404}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  755µs     904µs   (cache)      (cache)         9ms              1ms        168µs     13ms  
+  984µs     799µs   (cache)      (cache)         9ms              2ms        89µs      13ms  
 
-  ┌
-  │ {
-  │   message: 'Usuário não encontrado',
-  │   error: 'Not Found',
-  │   statusCode: 404
-  │ }
-  └
   √  Status code is 404
   √  Expect a response body saying that User was not found
 
 → Get All Tasks - Empty List
   GET localhost:3000/tasks  
-  404 Not Found ★ 8ms time ★ 231B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  404 Not Found ★ 6ms time ★ 231B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 75B
   │ {"message":"Usuário não encontrado","error":"Not Found
   │ ","statusCode":404}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  522µs     255µs   (cache)      (cache)         6ms              718µs      39µs      7ms   
+  630µs     311µs   (cache)      (cache)         4ms              639µs      37µs      5ms   
 
-  ┌
-  │ {
-  │   message: 'Usuário não encontrado',
-  │   error: 'Not Found',
-  │   statusCode: 404
-  │ }
-  └
   √  Status code is 404
   √  Expect a response body saying that User was not found
 
 → Create User
   POST localhost:3000/users  
-  201 Created ★ 132ms time ★ 422B↑ 360B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 42ms time ★ 422B↑ 360B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 137B
   │ {
   │     "firstName": "Dickson",
@@ -75,28 +58,28 @@ Assignment2
   │ 23","id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  607µs     335µs   (cache)      (cache)         129ms            1ms        100µs     132ms 
+  696µs     398µs   (cache)      (cache)         39ms             794µs      50µs      41ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get User by Id
   GET localhost:3000/users/1  
-  200 OK ★ 18ms time ★ 233B↑ 355B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 11ms time ★ 233B↑ 355B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 119B
   │ {"id":1,"firstName":"Dickson","lastName":"Souza","emai
   │ l":"36424026+disouzam@users.noreply.github.com","passw
   │ ord":"123"}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  495µs     284µs   (cache)      (cache)         16ms             625µs      48µs      17ms  
+  594µs     292µs   (cache)      (cache)         8ms              2ms        243µs     11ms  
 
   √  Status code is 200 - OK
   √  Validate response body schema
 
 → Create Project
   POST localhost:3000/projects  
-  201 Created ★ 66ms time ★ 373B↑ 336B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 14ms time ★ 373B↑ 336B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 86B
   │ {
   │     "name": "Lista de compras de Dickson Souza",
@@ -108,27 +91,27 @@ Assignment2
   │ on":"lista basica","user":{"id":1},"id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  675µs     266µs   (cache)      (cache)         64ms             662µs      41µs      66ms  
+  626µs     324µs   (cache)      (cache)         12ms             546µs      41µs      14ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get Project By Id
   GET localhost:3000/projects/1  
-  200 OK ★ 11ms time ★ 236B↑ 315B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 7ms time ★ 236B↑ 315B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 80B
   │ {"id":1,"name":"Lista de compras de Dickson Souza","de
   │ scription":"lista basica"}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  477µs     314µs   (cache)      (cache)         9ms              701µs      37µs      11ms  
+  492µs     263µs   (cache)      (cache)         5ms              596µs      34µs      7ms   
 
   √  Status code is 200 - OK
   √  Validate response body schema
 
 → Create Task
   POST localhost:3000/tasks  
-  201 Created ★ 66ms time ★ 390B↑ 427B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 22ms time ★ 390B↑ 427B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 105B
   │ {
   │     "name": "Comprar curso de NestJS para Dickson Souz
@@ -144,22 +127,65 @@ Assignment2
   │ ,"user":{"id":1},"id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  671µs     306µs   (cache)      (cache)         63ms             1ms        67µs      66ms  
+  777µs     268µs   (cache)      (cache)         21ms             576µs      31µs      22ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get Task By Id
   GET localhost:3000/tasks/1  
-  200 OK ★ 16ms time ★ 233B↑ 314B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 9ms time ★ 233B↑ 314B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 79B
   │ {"id":1,"name":"Comprar curso de NestJS para Dickson S
   │ ouza","status":"pending"}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  716µs     321µs   (cache)      (cache)         14ms             978µs      86µs      16ms  
+  864µs     442µs   (cache)      (cache)         7ms              1ms        103µs     9ms   
 
   √  Status code is 200 - OK
+  √  Validate response body schema
+
+→ Get All Users - 1 User added
+  GET localhost:3000/users  
+  200 OK ★ 7ms time ★ 231B↑ 357B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 121B
+  │ [{"id":1,"firstName":"Dickson","lastName":"Souza","ema
+  │ il":"36424026+disouzam@users.noreply.github.com","pass
+  │ word":"123"}]
+  └
+  prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
+  571µs     358µs   (cache)      (cache)         4ms              1ms        159µs     7ms   
+
+  √  Status code is 200
+  √  Expect a list with 1 user
+  √  Validate response body schema
+
+→ Get All Projects - 1 Project added
+  GET localhost:3000/projects  
+  200 OK ★ 9ms time ★ 234B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 82B
+  │ [{"id":1,"name":"Lista de compras de Dickson Souza","d
+  │ escription":"lista basica"}]
+  └
+  prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
+  403µs     152µs   (cache)      (cache)         7ms              676µs      34µs      8ms   
+
+  √  Status code is 200
+  √  Expect a list with 1 project
+  √  Validate response body schema
+
+→ Get All Tasks - 1 Task added
+  GET localhost:3000/tasks  
+  200 OK ★ 8ms time ★ 231B↑ 316B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 81B
+  │ [{"id":1,"name":"Comprar curso de NestJS para Dickson 
+  │ Souza","status":"pending"}]
+  └
+  prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
+  1ms       469µs   (cache)      (cache)         6ms              474µs      22µs      8ms   
+
+  √  Status code is 200
+  √  Expect a list with 1 task
   √  Validate response body schema
 
 ┌─────────────────────────┬─────────────────────┬────────────────────┐
@@ -167,21 +193,21 @@ Assignment2
 ├─────────────────────────┼─────────────────────┼────────────────────┤
 │              iterations │                   1 │                  0 │
 ├─────────────────────────┼─────────────────────┼────────────────────┤
-│                requests │                   9 │                  0 │
+│                requests │                  12 │                  0 │
 ├─────────────────────────┼─────────────────────┼────────────────────┤
-│            test-scripts │                   9 │                  0 │
+│            test-scripts │                  12 │                  0 │
 ├─────────────────────────┼─────────────────────┼────────────────────┤
 │      prerequest-scripts │                   0 │                  0 │
 ├─────────────────────────┼─────────────────────┼────────────────────┤
-│              assertions │                  18 │                  0 │
+│              assertions │                  27 │                  0 │
 ├─────────────────────────┴─────────────────────┴────────────────────┤
-│ total run duration: 1201ms                                         │
+│ total run duration: 1271ms                                         │
 ├────────────────────────────────────────────────────────────────────┤
-│ total data received: 831B (approx)                                 │
+│ total data received: 1.12kB (approx)                               │
 ├────────────────────────────────────────────────────────────────────┤
-│ average response time: 39ms [min: 8ms, max: 132ms, s.d.: 38ms]     │
+│ average response time: 14ms [min: 6ms, max: 42ms, s.d.: 10ms]      │
 ├────────────────────────────────────────────────────────────────────┤
-│ average DNS lookup time: 903µs [min: 903µs, max: 903µs, s.d.: 0µs] │
+│ average DNS lookup time: 786µs [min: 786µs, max: 786µs, s.d.: 0µs] │
 ├────────────────────────────────────────────────────────────────────┤
-│ average first byte time: 36ms [min: 6ms, max: 129ms, s.d.: 39ms]   │
+│ average first byte time: 11ms [min: 4ms, max: 39ms, s.d.: 9ms]     │
 └────────────────────────────────────────────────────────────────────┘
