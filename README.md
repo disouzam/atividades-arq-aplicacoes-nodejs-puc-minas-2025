@@ -437,3 +437,70 @@ Por fim, requisições que devem retornar coleções - Usuários, Projetos e Tar
 
 **Figura 25**: Requisição para retornar todas as tarefas do banco - Testes
 ![GET All Tasks - Testes](./atividade-2-pictures/27-Get-All-Tasks-1-task-Tests.png)
+
+# Atividade 3 - Autenticação e Cache
+
+## Estrutura da aplicação
+
+### Pacotes adicionais - bcrypt, jwt, cache-manager e redis
+
+Alguns pacotes adicionais serão instalados para essa parte da atividade 3. O comando original é apresentado abaixo, junto com os resultados que apontam conflitos com os pacotes instalados anteriormente.
+
+```shell
+# Original command
+
+# [bcrypt](https://www.npmjs.com/package/bcrypt)
+# [bcrypt repository](https://github.com/kelektiv/node.bcrypt.js)
+
+# [Type definitions for bcrypt](https://www.npmjs.com/package/@types/bcrypt)
+# [Repository with types for bcrypt](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/bcrypt)
+
+# [JWT utilities module for Nest based on the jsonwebtoken package](https://www.npmjs.com/package/@nestjs/jwt)
+# [jwt repositories](https://github.com/nestjs/jwt)
+
+# [cache-manager module for Nest originally published as part of the @nestjs/common package. This package is a drop-in replacement for the deprecated CacheModule](https://www.npmjs.com/package/@nestjs/cache-manager/v/2.3.0)
+# [cache-manager module repository](https://github.com/nestjs/cache-manager#readme)
+
+# [A cache module for nodejs that allows easy wrapping of functions in cache, tiered caches, and a consistent interface. This module is now part of the Cacheable project](https://www.npmjs.com/package/cache-manager/v/5.7.6)
+# [Caching for Nodejs based on Keyv](https://github.com/jaredwray/cacheable#readme)
+
+# [Redis cache store for node-cache-manager](https://www.npmjs.com/package/cache-manager-redis-store/v/2.0.0)
+# [Redis cache store repository](https://github.com/dabroek/node-cache-manager-redis-store#readme)
+
+# [Redis](https://www.npmjs.com/package/redis)
+# [node-redis repository](https://github.com/redis/node-redis)
+
+npm install --save bcrypt @types/bcrypt @nestjs/jwt @nestjs/cache-manager@2 cache-manager@5 cache-manager-redis-store@2 redis
+```
+
+```shell
+# Results of original command - Redacted
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: project-manager-api@0.0.1
+npm error Found: @nestjs/common@11.1.6
+npm error node_modules/@nestjs/common
+npm error   @nestjs/common@"^11.0.1" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer @nestjs/common@"^9.0.0 || ^10.0.0" from @nestjs/cache-manager@2.3.0
+npm error node_modules/@nestjs/cache-manager
+npm error   @nestjs/cache-manager@"2" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error {REDACTED}\npm-cache\_logs\2025-09-14T19_54_12_471Z-eresolve-report.txt
+npm error A complete log of this run can be found in: {REDACTED}\npm-cache\_logs\2025-09-14T19_54_12_471Z-debug-0.log
+```
+
+Com o objetivo de resolver o conflito, tentar-se-á forçar a resolução de dependências.
+
+```shell
+# Modified command
+npm install --save bcrypt @types/bcrypt @nestjs/jwt @nestjs/cache-manager@2 cache-manager@5 cache-manager-redis-store@2 redis --legacy-peer-deps
+```
