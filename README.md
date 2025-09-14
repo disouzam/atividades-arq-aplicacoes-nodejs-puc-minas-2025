@@ -519,3 +519,9 @@ Um novo serviço será criado dentro da pasta `auth`:
 ```shell
 nest g service infrastructure/auth/auth --flat
 ```
+
+Criação de arquivo com constante para uso com o jwt:
+
+```shell
+echo > src/infrastructure/auth/constants.ts
+```
