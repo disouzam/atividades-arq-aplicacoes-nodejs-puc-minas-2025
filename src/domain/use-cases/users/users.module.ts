@@ -7,7 +7,17 @@ import { GetUserByEmailService } from './get-user-by-email.service';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [CreateUserService, GetUserByIdService, GetAllUsersService, GetUserByEmailService],
-  exports: [CreateUserService, GetUserByIdService, GetAllUsersService],
+  providers: [
+    CreateUserService,
+    GetUserByIdService,
+    GetAllUsersService,
+    GetUserByEmailService,
+  ],
+  exports: [
+    CreateUserService,
+    GetUserByIdService,
+    GetAllUsersService,
+    GetUserByEmailService,
+  ],
 })
 export class UsersModule {}
