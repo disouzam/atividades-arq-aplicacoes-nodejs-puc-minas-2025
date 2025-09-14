@@ -525,3 +525,11 @@ Criação de arquivo com constante para uso com o jwt:
 ```shell
 echo > src/infrastructure/auth/constants.ts
 ```
+
+### Caso de uso - Recuperar usuários por e-mail
+
+O comando a ser executado é:
+
+```shell
+nest g service domain/use-cases/users/get-user-by-email --flat
+```
