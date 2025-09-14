@@ -417,3 +417,23 @@ As próximas operações consistem da criação de um usuário (Figuras 8 e 9), 
 
 **Figura 19**: Consulta de tarefa pelo ID - Testes
 ![Consulta de tarefa por ID](./atividade-2-pictures/19-GET-Task-By-ID-Tests.png)
+
+Por fim, requisições que devem retornar coleções - Usuários, Projetos e Tarefas - foram inseridas no final da coleção para uma verificação final da sua implementação. As Figuras 20 a 25 mostram os resultados dessas requisições
+
+**Figura 20**: Requisição para retornar todos os usuários do banco - Banco de dados com 1 usuário inserido
+![GET All Users - 1 usuário inserido](./atividade-2-pictures/22-Get-All-Users-1-user.png)
+
+**Figura 21**: Requisição para retornar todos os usuários do banco - Testes
+![GET All Users - Testes](./atividade-2-pictures/23-Get-All-Users-1-user-Tests.png)
+
+**Figura 22**: Requisição para retornar todos os projetos do banco - Banco de dados com 1 projeto inserido
+![GET All Projects - 1 projeto inserido](./atividade-2-pictures/24-Get-All-Projects-1-project.png)
+
+**Figura 23**: Requisição para retornar todos os projetos do banco - Testes
+![GET All Projects - Testes](./atividade-2-pictures/25-Get-All-Projects-1-project-Tests.png)
+
+**Figura 24**: Requisição para retornar todas as tarefas do banco - Banco de dados com 1 tarefa inserida
+![GET All Tasks - 1 tarefa inserida](./atividade-2-pictures/26-Get-All-Tasks-1-task.png)
+
+**Figura 25**: Requisição para retornar todas as tarefas do banco - Testes
+![GET All Tasks - Testes](./atividade-2-pictures/27-Get-All-Tasks-1-task-Tests.png)
