@@ -477,6 +477,137 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Users - 1 User added",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect an empty list of users\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"  pm.expect(jsonData).to.eql([]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/users",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Projects - 1 Project added",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"  pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"\r",
+							"  const expectedValue = {\r",
+							"    \"message\": \"Usuário não encontrado\",\r",
+							"    \"error\": \"Not Found\",\r",
+							"    \"statusCode\": 404\r",
+							"  };\r",
+							"\r",
+							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/projects",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks - 1 Task added",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response);\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"  pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"\r",
+							"  const expectedValue = {\r",
+							"    \"message\": \"Usuário não encontrado\",\r",
+							"    \"error\": \"Not Found\",\r",
+							"    \"statusCode\": 404\r",
+							"  };\r",
+							"\r",
+							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/tasks",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
