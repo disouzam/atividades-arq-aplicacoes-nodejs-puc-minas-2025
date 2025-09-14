@@ -359,3 +359,23 @@ Após a inicialização da aplicação, sem arquivo prévio de banco de dados, f
 
 **Figura 1:** Estado da aplicação após a inicialização
 ![Startup da aplicação](./atividade-2-pictures/00-application-startup.png)
+
+As primeiras três requisições ao banco visavam registrar o estado inicial do banco de dados - sem usuários, projetos e tarefas. As Figuras 2, 3, 4, 5, 6 e 7 mostram as requisições e os respectivos testes escritos em Javascript na interface do Postman - que podem ser conferidos diretamente na coleção [Assignment2.postman_collection.json](./Collections/Assignment2.postman_collection.json)
+
+**Figura 2**: Requisição para retornar todos os usuários do banco - Banco de dados vazio
+![GET All Users - Lista vazia](./atividade-2-pictures/01-GET-All-Users-EmptyList.png)
+
+**Figura 3**: Requisição para retornar todos os usuários do banco - Testes
+![GET All Users - Testes](./atividade-2-pictures/02-GET-All-Users-EmptyList-Tests.png)
+
+**Figura 4**: Requisição para retornar todos os projetos do banco - Banco de dados vazio
+![GET All Projects - Lista vazia](./atividade-2-pictures/03-GET-All-Projects-EmptyList.png)
+
+**Figura 5**: Requisição para retornar todos os projetos do banco - Testes
+![GET All Projects - Testes](./atividade-2-pictures/04-GET-All-Projects-EmptyList-Tests.png)
+
+**Figura 6**: Requisição para retornar todas as tarefas do banco - Banco de dados vazio
+![GET All Tasks - Lista vazia](./atividade-2-pictures/05-GET-All-Tasks-EmptyList.png)
+
+**Figura 7**: Requisição para retornar todas as tarefas do banco - Testes
+![GET All Tasks - Testes](./atividade-2-pictures/06-GET-All-Tasks-EmptyList-Tests.png)
