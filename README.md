@@ -541,3 +541,11 @@ O comando para criação do guard é:
 ```shell
 nest g service gateways/guards/auth-guard --flat
 ```
+
+### Criação de um controller para o login
+
+O comando para criação do controller é:
+
+```shell
+nest g controller gateways/controllers/auth/auth --flat
+```
