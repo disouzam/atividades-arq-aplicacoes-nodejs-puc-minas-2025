@@ -4,45 +4,45 @@ Assignment2
 
 → Get All Users - Empty List
   GET localhost:3000/users  
-  200 OK ★ 29ms time ★ 231B↑ 235B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 27ms time ★ 231B↑ 235B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 2B
   │ []
   └
   prepare   wait   dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  7ms       7ms    883µs        824µs           14ms             4ms        226µs     36ms  
+  7ms       7ms    786µs        796µs           13ms             3ms        170µs     34ms  
 
   √  Status code is 200
   √  Expect an empty list of users
 
 → Get All Projects - Empty List
   GET localhost:3000/projects  
-  404 Not Found ★ 8ms time ★ 234B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  404 Not Found ★ 13ms time ★ 234B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 75B
   │ {"message":"Usuário não encontrado","error":"Not Found
   │ ","statusCode":404}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  897µs     736µs   (cache)      (cache)         6ms              1ms        67µs      8ms   
+  984µs     799µs   (cache)      (cache)         9ms              2ms        89µs      13ms  
 
   √  Status code is 404
   √  Expect a response body saying that User was not found
 
 → Get All Tasks - Empty List
   GET localhost:3000/tasks  
-  404 Not Found ★ 5ms time ★ 231B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  404 Not Found ★ 6ms time ★ 231B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 75B
   │ {"message":"Usuário não encontrado","error":"Not Found
   │ ","statusCode":404}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  648µs     336µs   (cache)      (cache)         3ms              745µs      44µs      5ms   
+  630µs     311µs   (cache)      (cache)         4ms              639µs      37µs      5ms   
 
   √  Status code is 404
   √  Expect a response body saying that User was not found
 
 → Create User
   POST localhost:3000/users  
-  201 Created ★ 96ms time ★ 422B↑ 360B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 42ms time ★ 422B↑ 360B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 137B
   │ {
   │     "firstName": "Dickson",
@@ -58,28 +58,28 @@ Assignment2
   │ 23","id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  567µs     353µs   (cache)      (cache)         94ms             751µs      41µs      96ms  
+  696µs     398µs   (cache)      (cache)         39ms             794µs      50µs      41ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get User by Id
   GET localhost:3000/users/1  
-  200 OK ★ 7ms time ★ 233B↑ 355B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 11ms time ★ 233B↑ 355B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 119B
   │ {"id":1,"firstName":"Dickson","lastName":"Souza","emai
   │ l":"36424026+disouzam@users.noreply.github.com","passw
   │ ord":"123"}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  636µs     413µs   (cache)      (cache)         5ms              673µs      45µs      7ms   
+  594µs     292µs   (cache)      (cache)         8ms              2ms        243µs     11ms  
 
   √  Status code is 200 - OK
   √  Validate response body schema
 
 → Create Project
   POST localhost:3000/projects  
-  201 Created ★ 33ms time ★ 373B↑ 336B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 14ms time ★ 373B↑ 336B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 86B
   │ {
   │     "name": "Lista de compras de Dickson Souza",
@@ -91,27 +91,27 @@ Assignment2
   │ on":"lista basica","user":{"id":1},"id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  873µs     277µs   (cache)      (cache)         31ms             595µs      36µs      33ms  
+  626µs     324µs   (cache)      (cache)         12ms             546µs      41µs      14ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get Project By Id
   GET localhost:3000/projects/1  
-  200 OK ★ 9ms time ★ 236B↑ 315B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 7ms time ★ 236B↑ 315B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 80B
   │ {"id":1,"name":"Lista de compras de Dickson Souza","de
   │ scription":"lista basica"}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  480µs     264µs   (cache)      (cache)         7ms              503µs      35µs      8ms   
+  492µs     263µs   (cache)      (cache)         5ms              596µs      34µs      7ms   
 
   √  Status code is 200 - OK
   √  Validate response body schema
 
 → Create Task
   POST localhost:3000/tasks  
-  201 Created ★ 31ms time ★ 390B↑ 427B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
+  201 Created ★ 22ms time ★ 390B↑ 427B↓ size ★ 9↑ 7↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 105B
   │ {
   │     "name": "Comprar curso de NestJS para Dickson Souz
@@ -127,34 +127,34 @@ Assignment2
   │ ,"user":{"id":1},"id":1}
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  801µs     337µs   (cache)      (cache)         29ms             557µs      33µs      31ms  
+  777µs     268µs   (cache)      (cache)         21ms             576µs      31µs      22ms  
 
   √  Status code is 201 - Created
   √  Validate response body schema
 
 → Get Task By Id
   GET localhost:3000/tasks/1  
-  200 OK ★ 16ms time ★ 233B↑ 314B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 9ms time ★ 233B↑ 314B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 79B
   │ {"id":1,"name":"Comprar curso de NestJS para Dickson S
   │ ouza","status":"pending"}
   └
-  prepare   wait   dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  2ms       1ms    (cache)      (cache)         13ms             885µs      70µs      17ms  
+  prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
+  864µs     442µs   (cache)      (cache)         7ms              1ms        103µs     9ms   
 
   √  Status code is 200 - OK
   √  Validate response body schema
 
 → Get All Users - 1 User added
   GET localhost:3000/users  
-  200 OK ★ 5ms time ★ 231B↑ 357B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 7ms time ★ 231B↑ 357B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 121B
   │ [{"id":1,"firstName":"Dickson","lastName":"Souza","ema
   │ il":"36424026+disouzam@users.noreply.github.com","pass
   │ word":"123"}]
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  671µs     331µs   (cache)      (cache)         3ms              492µs      49µs      5ms   
+  571µs     358µs   (cache)      (cache)         4ms              1ms        159µs     7ms   
 
   √  Status code is 200
   √  Expect a list with 1 user
@@ -162,48 +162,31 @@ Assignment2
 
 → Get All Projects - 1 Project added
   GET localhost:3000/projects  
-  200 OK ★ 6ms time ★ 234B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 9ms time ★ 234B↑ 317B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 82B
   │ [{"id":1,"name":"Lista de compras de Dickson Souza","d
   │ escription":"lista basica"}]
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  541µs     221µs   (cache)      (cache)         5ms              451µs      28µs      6ms   
+  403µs     152µs   (cache)      (cache)         7ms              676µs      34µs      8ms   
 
-  ┌
-  │ [
-  │   {
-  │     id: 1,
-  │     name: 'Lista de compras de Dickson Souza',
-  │     description: 'lista basica'
-  │   }
-  │ ]
-  └
-  1. Status code is 404
-  2. Expect a response body saying that User was not found
+  √  Status code is 200
+  √  Expect a list with 1 project
+  √  Validate response body schema
 
 → Get All Tasks - 1 Task added
   GET localhost:3000/tasks  
-  200 OK ★ 6ms time ★ 231B↑ 316B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
+  200 OK ★ 8ms time ★ 231B↑ 316B↓ size ★ 7↑ 7↓ headers ★ 0 cookies
   ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 81B
   │ [{"id":1,"name":"Comprar curso de NestJS para Dickson 
   │ Souza","status":"pending"}]
   └
   prepare   wait    dns-lookup   tcp-handshake   transfer-start   download   process   total 
-  296µs     136µs   (cache)      (cache)         4ms              810µs      65µs      5ms   
+  1ms       469µs   (cache)      (cache)         6ms              474µs      22µs      8ms   
 
-  ┌
-  │ [
-  │   {
-  │     id: 1,
-  │     name: 'Comprar curso de NestJS para Dickson Souza'
-  │ ,
-  │     status: 'pending'
-  │   }
-  │ ]
-  └
-  3. Status code is 404
-  4. Expect a response body saying that User was not found
+  √  Status code is 200
+  √  Expect a list with 1 task
+  √  Validate response body schema
 
 ┌─────────────────────────┬─────────────────────┬────────────────────┐
 │                         │            executed │             failed │
@@ -216,37 +199,15 @@ Assignment2
 ├─────────────────────────┼─────────────────────┼────────────────────┤
 │      prerequest-scripts │                   0 │                  0 │
 ├─────────────────────────┼─────────────────────┼────────────────────┤
-│              assertions │                  25 │                  4 │
+│              assertions │                  27 │                  0 │
 ├─────────────────────────┴─────────────────────┴────────────────────┤
-│ total run duration: 3.2s                                           │
+│ total run duration: 1271ms                                         │
 ├────────────────────────────────────────────────────────────────────┤
 │ total data received: 1.12kB (approx)                               │
 ├────────────────────────────────────────────────────────────────────┤
-│ average response time: 20ms [min: 5ms, max: 96ms, s.d.: 24ms]      │
+│ average response time: 14ms [min: 6ms, max: 42ms, s.d.: 10ms]      │
 ├────────────────────────────────────────────────────────────────────┤
-│ average DNS lookup time: 883µs [min: 883µs, max: 883µs, s.d.: 0µs] │
+│ average DNS lookup time: 786µs [min: 786µs, max: 786µs, s.d.: 0µs] │
 ├────────────────────────────────────────────────────────────────────┤
-│ average first byte time: 18ms [min: 3ms, max: 94ms, s.d.: 24ms]    │
+│ average first byte time: 11ms [min: 4ms, max: 39ms, s.d.: 9ms]     │
 └────────────────────────────────────────────────────────────────────┘
-
-[31m  # [39m[31m failure        [39m[31m detail                                                [39m
-[90m    [39m[90m                [39m[90m                                                       [39m
- 1.  AssertionError  Status code is 404                                    
-                     expected response to have status code 404 but got 200 
-                     at assertion:0 in test-script                         
-                     inside "Get All Projects - 1 Project added"           
-[90m    [39m[90m                [39m[90m                                                       [39m
- 2.  AssertionError  Expect a response body saying that User was not found 
-                     expected [ { id: 1, …(2) } ] to deeply equal { …(3) } 
-                     at assertion:1 in test-script                         
-                     inside "Get All Projects - 1 Project added"           
-[90m    [39m[90m                [39m[90m                                                       [39m
- 3.  AssertionError  Status code is 404                                    
-                     expected response to have status code 404 but got 200 
-                     at assertion:0 in test-script                         
-                     inside "Get All Tasks - 1 Task added"                 
-[90m    [39m[90m                [39m[90m                                                       [39m
- 4.  AssertionError  Expect a response body saying that User was not found 
-                     expected [ { id: 1, …(2) } ] to deeply equal { …(3) } 
-                     at assertion:1 in test-script                         
-                     inside "Get All Tasks - 1 Task added"                 
