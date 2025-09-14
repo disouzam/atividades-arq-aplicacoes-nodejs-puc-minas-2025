@@ -159,7 +159,7 @@ echo > src/domain/entities/task.ts
 echo > src/domain/entities/user.ts
 ```
 
-### Atividade 2 - Arquitetura Clean
+# Atividade 2 - Arquitetura Clean
 
 Instalação das dependências adicionais
 
@@ -186,7 +186,7 @@ npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transfo
 npm install --save @nestjs/mapped-types
 ```
 
-#### Estrutura dos módulos
+## Estrutura dos módulos
 
 ```shell
 nest g module domain
@@ -200,7 +200,7 @@ nest g module infrastructure/auth
 nest g module gateways
 ```
 
-#### Casos de uso
+## Casos de uso
 
 ```shell
 nest g service domain/use-cases/projects/get-all-projects --flat
@@ -217,7 +217,7 @@ nest g service domain/use-cases/users/get-user-by-id --flat
 nest g service domain/use-cases/users/get-all-users --flat
 ```
 
-#### Repositórios
+## Repositórios
 
 ```shell
 nest g service infrastructure/database/repositories/projects.repository --flat --no-spec
@@ -225,7 +225,7 @@ nest g service infrastructure/database/repositories/tasks.repository --flat --no
 nest g service infrastructure/database/repositories/users.repository --flat --no-spec
 ```
 
-#### Entidades
+## Entidades
 
 ```shell
 echo > src/infrastructure/database/entities/project.entity.ts
@@ -233,7 +233,7 @@ echo > src/infrastructure/database/entities/task.entity.ts
 echo > src/infrastructure/database/entities/user.entity.ts
 ```
 
-#### Implementação dos repositórios
+## Implementação dos repositórios
 
 ```shell
 mkdir src/domain/repositories
@@ -264,7 +264,7 @@ echo "@Injectable()" >> src/infrastructure/database/repositories/users.repositor
 echo "export class" >> src/infrastructure/database/repositories/users.repository.service.ts
 ```
 
-#### Implementação dos casos de uso
+## Implementação dos casos de uso
 
 ```shell
 mkdir src/gateways/controllers/projects/dtos
@@ -286,7 +286,7 @@ Interface para implementação dos casos de uso
 echo > src/domain/use-cases/base-use-case.ts
 ```
 
-#### Testes da API implementada até a atividade 2 usando Postman e Newman
+## Testes da API implementada até a atividade 2 usando Postman e Newman
 
 Instalação do newman usando a linha de comando
 
@@ -353,7 +353,7 @@ e o sumário de uma execução bem sucedida é apresentado no arquivo `Collectio
 └────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Capturas de tela dos testes usando o Postman e registro do banco de dados
+## Capturas de tela dos testes usando o Postman e registro do banco de dados
 
 Após a inicialização da aplicação, sem arquivo prévio de banco de dados, foram realizadas requisições para a API usando o Postman e os resultados e testes embutidos no Postman serão apresentados a seguir. A Figura 1 mostra o estado da aplicação logo após o startup usando o comando `npm run start`:
 
