@@ -533,3 +533,11 @@ O comando a ser executado é:
 ```shell
 nest g service domain/use-cases/users/get-user-by-email --flat
 ```
+
+### Criação de um guarda para controle da autenticação
+
+O comando para criação do guard é:
+
+```shell
+nest g service gateways/guards/auth-guard --flat
+```
