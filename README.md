@@ -352,3 +352,10 @@ e o sumário de uma execução bem sucedida é apresentado no arquivo `Collectio
 │ average first byte time: 36ms [min: 6ms, max: 129ms, s.d.: 39ms]   │
 └────────────────────────────────────────────────────────────────────┘
 ```
+
+#### Capturas de tela dos testes usando o Postman e registro do banco de dados
+
+Após a inicialização da aplicação, sem arquivo prévio de banco de dados, foram realizadas requisições para a API usando o Postman e os resultados e testes embutidos no Postman serão apresentados a seguir. A Figura 1 mostra o estado da aplicação logo após o startup usando o comando `npm run start`:
+
+**Figura 1:** Estado da aplicação após a inicialização
+![Startup da aplicação](./atividade-2-pictures/00-application-startup.png)
