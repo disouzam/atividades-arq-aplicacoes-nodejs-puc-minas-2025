@@ -549,3 +549,11 @@ O comando para criação do controller é:
 ```shell
 nest g controller gateways/controllers/auth/auth --flat
 ```
+
+### Criação de dtos para o login
+
+O comando para criação dos dtos de login via linha de comando é:
+
+```shell
+echo > src/gateways/controllers/auth/dtos/login.dto.ts
+```
