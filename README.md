@@ -379,3 +379,23 @@ As primeiras três requisições ao banco visavam registrar o estado inicial do 
 
 **Figura 7**: Requisição para retornar todas as tarefas do banco - Testes
 ![GET All Tasks - Testes](./atividade-2-pictures/06-GET-All-Tasks-EmptyList-Tests.png)
+
+As próximas operações consistem da criação de um usuário (Figuras 8 e 9), um projeto para esse usuário (Figuras 12 e 13) e de uma tarefa (Figuras 16 e 17) para esse projeto e testes na própria requisição e requisição de GET por ID para checar a operação anterior de POST (Figuras 10 e 11 - Usuário; Figuras 14 e 15 - Projeto; Figuras 18 e 19 - Tarefas).
+
+**Figura 8**: Criação de um usuário - Requisição
+![Criação de novo usuário](./atividade-2-pictures/07-Create-New-User.png)
+
+**Figura 9**: Criação de um usuário - Testes
+![Criação de novo usuário - Testes](./atividade-2-pictures/08-Create-New-User-Tests.png)
+
+**Figura 12**: Criação de um projeto - Requisição
+![Criação de novo projeto](./atividade-2-pictures/12-Create-New-Project.png)
+
+**Figura 13**: Criação de um projeto - Testes
+![Criação de novo projeto - Testes](./atividade-2-pictures/13-Create-New-Project-Tests.png)
+
+**Figura 16**: Criação de uma tarefa - Requisição
+![Criação de nova tarefa](./atividade-2-pictures/16-Create-New-Task.png)
+
+**Figura 17**: Criação de uma tarefa - Testes
+![Criação de nova tarefa - Testes](./atividade-2-pictures/17-Create-New-Task-Tests.png)
