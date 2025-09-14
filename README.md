@@ -388,14 +388,32 @@ As próximas operações consistem da criação de um usuário (Figuras 8 e 9), 
 **Figura 9**: Criação de um usuário - Testes
 ![Criação de novo usuário - Testes](./atividade-2-pictures/08-Create-New-User-Tests.png)
 
+**Figura 10**: Consulta de usuário pelo ID - Requisição
+![Consulta de usuário por ID](./atividade-2-pictures/10-GET-User-by-ID.png)
+
+**Figura 11**: Consulta de usuário pelo ID - Testes
+![Consulta de usuário por ID](./atividade-2-pictures/11-GET-User-by-ID-Tests.png)
+
 **Figura 12**: Criação de um projeto - Requisição
 ![Criação de novo projeto](./atividade-2-pictures/12-Create-New-Project.png)
 
 **Figura 13**: Criação de um projeto - Testes
 ![Criação de novo projeto - Testes](./atividade-2-pictures/13-Create-New-Project-Tests.png)
 
+**Figura 14**: Consulta de projeto pelo ID - Requisição
+![Consulta de projeto por ID](./atividade-2-pictures/14-GET-Project-By-ID.png)
+
+**Figura 15**: Consulta de projeto pelo ID - Testes
+![Consulta de projeto por ID](./atividade-2-pictures/15-GET-Project-By-ID-Tests.png)
+
 **Figura 16**: Criação de uma tarefa - Requisição
 ![Criação de nova tarefa](./atividade-2-pictures/16-Create-New-Task.png)
 
 **Figura 17**: Criação de uma tarefa - Testes
 ![Criação de nova tarefa - Testes](./atividade-2-pictures/17-Create-New-Task-Tests.png)
+
+**Figura 18**: Consulta de tarefa pelo ID - Requisição
+![Consulta de tarefa por ID](./atividade-2-pictures/18-GET-Task-By-ID.png)
+
+**Figura 19**: Consulta de tarefa pelo ID - Testes
+![Consulta de tarefa por ID](./atividade-2-pictures/19-GET-Task-By-ID-Tests.png)
