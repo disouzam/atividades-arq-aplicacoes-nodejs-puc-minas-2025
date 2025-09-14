@@ -557,3 +557,5 @@ O comando para criação dos dtos de login via linha de comando é:
 ```shell
 echo > src/gateways/controllers/auth/dtos/login.dto.ts
 ```
+
+## Estratégia de cache
