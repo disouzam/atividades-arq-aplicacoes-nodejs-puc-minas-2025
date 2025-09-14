@@ -14,15 +14,13 @@
 					"script": {
 						"exec": [
 							"const response = pm.response.json();\r",
-							"console.log(response);\r",
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"  pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Expect an empty list of users\", function () {\r",
-							"  var jsonData = pm.response.json();\r",
-							"  pm.expect(jsonData).to.eql([]);\r",
+							"  pm.expect(response).to.eql([]);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -53,14 +51,12 @@
 					"script": {
 						"exec": [
 							"const response = pm.response.json();\r",
-							"console.log(response);\r",
 							"\r",
 							"pm.test(\"Status code is 404\", function () {\r",
 							"  pm.response.to.have.status(404);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
-							"  var jsonData = pm.response.json();\r",
 							"\r",
 							"  const expectedValue = {\r",
 							"    \"message\": \"Usuário não encontrado\",\r",
@@ -68,7 +64,7 @@
 							"    \"statusCode\": 404\r",
 							"  };\r",
 							"\r",
-							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"  pm.expect(response).to.eql(expectedValue);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -99,22 +95,19 @@
 					"script": {
 						"exec": [
 							"const response = pm.response.json();\r",
-							"console.log(response);\r",
 							"\r",
 							"pm.test(\"Status code is 404\", function () {\r",
 							"  pm.response.to.have.status(404);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Expect a response body saying that User was not found\", function () {\r",
-							"  var jsonData = pm.response.json();\r",
-							"\r",
 							"  const expectedValue = {\r",
 							"    \"message\": \"Usuário não encontrado\",\r",
 							"    \"error\": \"Not Found\",\r",
 							"    \"statusCode\": 404\r",
 							"  };\r",
 							"\r",
-							"  pm.expect(jsonData).to.eql(expectedValue);\r",
+							"  pm.expect(response).to.eql(expectedValue);\r",
 							"});"
 						],
 						"type": "text/javascript",
