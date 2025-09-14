@@ -5,5 +5,6 @@ import { AuthGuardService } from './guards/auth-guard.service';
 @Module({
   imports: [ControllerModule],
   providers: [AuthGuardService],
+  exports: [AuthGuardService],
 })
 export class GatewaysModule {}
