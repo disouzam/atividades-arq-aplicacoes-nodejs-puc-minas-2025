@@ -18,7 +18,9 @@ import { GetAllProjectsService } from 'src/domain/use-cases/projects/get-all-pro
 import { GetProjectByIdService } from 'src/domain/use-cases/projects/get-project-by-id.service';
 import { CreateProjectDto } from './dtos/create-project.dto';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import Cache from 'cache-manager';
+
+// https://medium.com/@lior_amsalem/ts1272-a-type-referenced-in-a-decorated-signature-must-be-imported-with-import-type-or-a-10216700b2d9
+import type { Cache } from 'cache-manager';
 
 @Controller('projects')
 export class ProjectsController {

@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { GetUserByEmailService } from 'src/domain/use-cases/users/get-user-by-email.service';
@@ -11,17 +15,22 @@ export class AuthService {
   ) {}
 
   async login(email: string, password: string) {
-    const user = await this.getUserByEmailUserCase.execute(email);
-    const isAValidUser = await compare(password, user.password);
+    try {
+      const user = await this.getUserByEmailUserCase.execute(email);
 
-    if (!isAValidUser) {
-      throw new UnauthorizedException();
+      const isAValidUser = await compare(password, user.password);
+
+      if (!isAValidUser) {
+        throw new UnauthorizedException();
+      }
+
+      const payload = { sub: user.id, email: user.email };
+
+      return {
+        access_token: this.jwtService.signAsync(payload),
+      };
+    } catch (error) {
+      throw new NotFoundException('Usuário não encontrado');
     }
-
-    const payload = { sub: user.id, email: user.email };
-
-    return {
-      access_token: this.jwtService.signAsync(payload),
-    };
   }
 }
