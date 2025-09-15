@@ -1,12 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { GetUserByIdService } from 'src/domain/use-cases/users/get-user-by-id.service';
+import { GetUserByEmailService } from 'src/domain/use-cases/users/get-user-by-email.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly getUserByEmailUserCase: GetUserByIdService,
+    private readonly getUserByEmailUserCase: GetUserByEmailService,
     private readonly jwtService: JwtService,
   ) {}
 

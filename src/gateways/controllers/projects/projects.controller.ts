@@ -18,6 +18,7 @@ import { GetAllProjectsService } from 'src/domain/use-cases/projects/get-all-pro
 import { GetProjectByIdService } from 'src/domain/use-cases/projects/get-project-by-id.service';
 import { CreateProjectDto } from './dtos/create-project.dto';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import Cache from 'cache-manager';
 
 @Controller('projects')
 export class ProjectsController {
@@ -25,7 +26,7 @@ export class ProjectsController {
     private readonly getAllProjectsUseCase: GetAllProjectsService,
     private readonly getProjectByIdUseCase: GetProjectByIdService,
     private readonly createProjectUseCase: CreateProjectService,
-    @Inject(CACHE_MANAGER) private readonly cacheService: Cache,
+    @Inject(CACHE_MANAGER) private cacheService: Cache,
   ) {}
 
   @Get()

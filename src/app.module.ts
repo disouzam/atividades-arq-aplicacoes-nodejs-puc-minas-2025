@@ -8,6 +8,7 @@ import { GatewaysModule } from './gateways/gateways.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuardService } from './gateways/guards/auth-guard.service';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthGuardService } from './gateways/guards/auth-guard.service';
     DomainModule,
     InfrastructureModule,
     GatewaysModule,
+    CacheModule.register({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [
