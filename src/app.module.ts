@@ -16,7 +16,7 @@ import { CacheModule } from '@nestjs/cache-manager';
     DomainModule,
     InfrastructureModule,
     GatewaysModule,
-    CacheModule.register({ isGlobal: true }),
+    CacheModule.register({ isGlobal: true, ttl: 60000 }),
   ],
   controllers: [AppController],
   providers: [
