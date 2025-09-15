@@ -25,9 +25,10 @@ export class AuthService {
       }
 
       const payload = { sub: user.id, email: user.email };
+      const access_token = await this.jwtService.signAsync(payload);
 
       return {
-        access_token: this.jwtService.signAsync(payload),
+        access_token: access_token,
       };
     } catch (error) {
       throw new NotFoundException('Usuário não encontrado');
