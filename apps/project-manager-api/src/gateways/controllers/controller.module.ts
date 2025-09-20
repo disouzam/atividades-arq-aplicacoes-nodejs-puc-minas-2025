@@ -5,9 +5,16 @@ import { UsersController } from './users/users.controller';
 import { UseCasesModule } from '@project-manager-api/domain/use-cases/use-cases.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from '@project-manager-api/infrastructure/auth/auth.module';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
-  imports: [UseCasesModule, AuthModule],
+  imports: [
+    UseCasesModule,
+    AuthModule,
+    ClientsModule.register([
+      { name: 'PROJECTS_MANAGER_API', transport: Transport.REDIS },
+    ]),
+  ],
   controllers: [
     ProjectsController,
     TasksController,
