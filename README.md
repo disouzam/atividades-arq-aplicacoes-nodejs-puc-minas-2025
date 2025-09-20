@@ -670,12 +670,16 @@ mkdir apps/tasks/src/gateways
 echo > apps/tasks/src/gateways/.gitignore
 mkdir apps/tasks/src/gateways/controllers
 echo > apps/tasks/src/gateways/controllers/.gitignore
+mkdir apps/tasks/src/gateways/controllers/dtos
+echo > apps/tasks/src/gateways/controllers/dtos/.gitignore
 mkdir apps/tasks/src/infrastructure
 echo > apps/tasks/src/infrastructure/.gitignore
 mkdir apps/tasks/src/infrastructure/entities
 echo > apps/tasks/src/infrastructure/entities/.gitignore
 mkdir apps/tasks/src/infrastructure/database
 echo > apps/tasks/src/infrastructure/database/.gitignore
+mkdir apps/tasks/src/infrastructure/repositories
+echo > apps/tasks/src/infrastructure/repositories/.gitignore
 mkdir apps/tasks/src/domain
 echo > apps/tasks/src/domain/.gitignore
 mkdir apps/tasks/src/domain/entities
@@ -686,4 +690,17 @@ mkdir apps/tasks/src/domain/repositories
 echo > apps/tasks/src/domain/repositories/.gitignore
 mkdir apps/tasks/src/domain/use-cases
 echo > apps/tasks/src/domain/use-cases/.gitignore
+```
+
+Todos os arquivos relacionados às `Tasks` dentro do projecto `project-manager-api` serão movidos ou terão seu conteúdo migrado para o pacote `tasks`
+
+```shell
+mv ./apps/project-manager-api/src/domain/entities/task.ts ./apps/tasks/src/domain/entities
+mv ./apps/project-manager-api/src/domain/interfaces/task.interface.ts ./apps/tasks/src/domain
+mv ./apps/project-manager-api/src/domain/repositories/tasks-repository.interface.ts ./apps/tasks/src/domain/repositories
+mv -t ./apps/tasks/src/domain/use-cases ./apps/project-manager-api/src/domain/use-cases/tasks/*
+mv ./apps/project-manager-api/src/infrastructure/database/entities/task.entity.ts ./apps/tasks/src/infrastructure/entities
+mv ./apps/project-manager-api/src/infrastructure/database/repositories/tasks.repository.service.ts ./apps/tasks/src/infrastructure/repositories
+cp ./apps/project-manager-api/src/gateways/controllers/tasks/tasks.controller.ts ./apps/tasks/src/gateways/controllers/tasks.controller.ts
+mv -t ./apps/tasks/src/gateways/controllers/dtos ./apps/project-manager-api/src/gateways/controllers/tasks/dtos/*
 ```
