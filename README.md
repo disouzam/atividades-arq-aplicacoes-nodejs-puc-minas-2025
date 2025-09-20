@@ -558,4 +558,46 @@ O comando para criação dos dtos de login via linha de comando é:
 echo > src/gateways/controllers/auth/dtos/login.dto.ts
 ```
 
-## Estratégia de cache
+## Capturas de tela dos testes usando o Postman
+
+Para ilustrar o funcionamento das configurações de autenticação e autorização, uma pequena coleção ([Assignment #3 - Postman collection](./Collections/Assignment3.postman_collection.json)) foi criada com 3 requisições HTTP usando o Postman. A coleção criada para a atividade 2 foi usada como base.
+
+O tempo de expiração do token foi ajustado em 5 minutos por dois fatores: longo o suficiente para fazer duas ou mais requisições sequenciais sem necessitar obter um novo token e curto o suficiente para expirar durante os testes e permitir checar sua expiração.
+
+A primeira requisição consistiu na criação do usuário com uma senha. Nessa atividade, a senha passou a ser encriptada para ser salva no banco de dados, conforme implementação disponível no [Commit 4f4f640: Added encryption of password in creation of users](https://github.com/disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025/commit/4f4f6409b35bd3beedfe948525422321842b9932).
+
+A Figura 26 apresenta a requisição para a criação de usuários. Nota-se que essa requisição não carece de autorização nessa implementação presente. Num cenário real, a criação de usuários também é protegida para evitar abusos na criação e acessos ao sistema. Nota-se também que a senha é devolvida na resposta devidamente encriptada. Num cenário real, essa senha não seria devolvida dessa forma, pois não importa ao usuário saber o resultado da encriptação de sua senha, além de expor esse retorno a abusos.
+
+**Figura 26**: Criação de usuário
+![Criação de usuário - Atividade 3](./atividade-3-pictures/0-UserCreation.png)
+
+Na Figura 27, uma requisição para a rota de login (`/auth/login`) é feita para a obtenção do token de acesso. Essa também é uma requisição que dispensa autorização - sendo a senha e usuário corretos, o token de acesso será usado posteriormente para a autorização de outras rotas.
+
+**Figura 27**: Obtenção do token de acesso
+![Obtenção do token de acesso - Atividade 3](./atividade-3-pictures/1-Login.png)
+
+Para facilitar o uso dessa coleção da forma mais autônoma possível - mesmo que nesse cenário didático a coleção seja pequena e apenas uma requisição vá usar efetivamente o token de acesso - criação de projetos a partir de um usuário autenticado, foi implementado um script que é executado no retorno da requisição para coletar o token de acesso no corpo da resposta e salvar automaticamente na variável de ambiente `access_token` - dessa maneira, nenhuma intervenção manual é necessária para uso do token.
+
+O script para esse salvamento está reproduzido abaixo e na Figura 28 e está presente também no arquivo da coleção.
+
+```javascript
+const response = pm.response.json();
+const access_token_value = response['access_token'];
+
+pm.environment.set('access_token', access_token_value);
+
+console.info('New access token written to environment variable access_token');
+```
+
+**Figura 28**: Salvamento do token de acesso automaticamente
+![Salvamento do token de acesso na variável de ambiente - Atividade 3](./atividade-3-pictures/2-Login-Tests.png)
+
+E, por fim, temos a criação do projeto. Foram feitos dois testes para simular o uso ativo do token de acesso.
+
+Na Figura 29, mostra-se o resultado da requisição sem a presença do Bearer Token. Já a Figura 30 mostra o exmeplo de uma requisição bem sucedida. Note que o token é obtido automaticamente das variáveis de ambiente.
+
+**Figura 29**: Criação de projeto não autorizada pela falta de token de acesso
+![Criação de projeto não autorizada - Atividade 3](./atividade-3-pictures/3-ProjectCreation-UnauthorizedUser.png)
+
+**Figura 30**: Criação de projeto autorizada pela falta de token de acesso
+![Criação de projeto autorizada - Atividade 3](./atividade-3-pictures/4-ProjectCreation-AuthorizedUser.png)
