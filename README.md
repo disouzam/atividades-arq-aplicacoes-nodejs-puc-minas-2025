@@ -662,3 +662,28 @@ Criação de uma biblioteca compartilhada entre as aplicações para compartilha
 ```shell
 nest generate lib common
 ```
+
+Replicação da arquitetura clean dentro do pacote Tasks:
+
+```shell
+mkdir apps/tasks/src/gateways
+echo > apps/tasks/src/gateways/.gitignore
+mkdir apps/tasks/src/gateways/controllers
+echo > apps/tasks/src/gateways/controllers/.gitignore
+mkdir apps/tasks/src/infrastructure
+echo > apps/tasks/src/infrastructure/.gitignore
+mkdir apps/tasks/src/infrastructure/entities
+echo > apps/tasks/src/infrastructure/entities/.gitignore
+mkdir apps/tasks/src/infrastructure/database
+echo > apps/tasks/src/infrastructure/database/.gitignore
+mkdir apps/tasks/src/domain
+echo > apps/tasks/src/domain/.gitignore
+mkdir apps/tasks/src/domain/entities
+echo > apps/tasks/src/domain/entities/.gitignore
+mkdir apps/tasks/src/domain/interfaces
+echo > apps/tasks/src/domain/interfaces/.gitignore
+mkdir apps/tasks/src/domain/repositories
+echo > apps/tasks/src/domain/repositories/.gitignore
+mkdir apps/tasks/src/domain/use-cases
+echo > apps/tasks/src/domain/use-cases/.gitignore
+```
