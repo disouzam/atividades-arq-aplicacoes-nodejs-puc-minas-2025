@@ -622,3 +622,9 @@ Criação de arquivo `docker-compose.yml`:
 echo > docker-compose.yml
 code docker-compose.yml
 ```
+
+Conversão do projeto para sistema de monorepos:
+
+```shell
+nest generated app tasks
+```

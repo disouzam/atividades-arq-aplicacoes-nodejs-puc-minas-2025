@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/project-manager-api/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/project-manager-api/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/project-manager-api",
+  "projects": {
+    "project-manager-api": {
+      "type": "application",
+      "root": "apps/project-manager-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/project-manager-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/project-manager-api/tsconfig.app.json"
+      }
+    },
+    "tasks": {
+      "type": "application",
+      "root": "apps/tasks",
+      "entryFile": "main",
+      "sourceRoot": "apps/tasks/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tasks/tsconfig.app.json"
+      }
+    }
   }
 }
