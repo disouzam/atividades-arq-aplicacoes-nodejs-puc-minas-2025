@@ -601,3 +601,11 @@ Na Figura 29, mostra-se o resultado da requisição sem a presença do Bearer To
 
 **Figura 30**: Criação de projeto autorizada pela falta de token de acesso
 ![Criação de projeto autorizada - Atividade 3](./atividade-3-pictures/4-ProjectCreation-AuthorizedUser.png)
+
+Voltando ao aspecto da encriptação da senha no banco de dados, as Figuras 31 e 32 mostram o salvamento da senha não encriptada como parte da atividade #2 e a senha encriptada como parte da atividade #3
+
+**Figura 31**: Senha não encriptada
+![Senha não encriptada - Atividade 2](./atividade-2-pictures/09-New-User-created-persisted-in-db.png)
+
+**Figura 32**: Senha encriptada
+![Senha encriptada - Atividade 3](./atividade-3-pictures/5-EncryptedPassword.png)
