@@ -609,3 +609,16 @@ Voltando ao aspecto da encriptação da senha no banco de dados, as Figuras 31 e
 
 **Figura 32**: Senha encriptada
 ![Senha encriptada - Atividade 3](./atividade-3-pictures/5-EncryptedPassword.png)
+
+# Atividade 4
+
+Para a atividade 4, será utilizado o Redis para implementação da comunicação entre microserviços. As rotas / serviços de tarefas serão extraídos do projeto principal e será implementado como um microserviço.
+
+## Configurações
+
+Criação de arquivo `docker-compose.yml`:
+
+```shell
+echo > docker-compose.yml
+code docker-compose.yml
+```
