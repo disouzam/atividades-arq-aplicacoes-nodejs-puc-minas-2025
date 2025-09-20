@@ -640,3 +640,19 @@ Ajustes na resolução de referências por meio da modificação do caminho no `
 ```
 
 Usando o recurso de busca do VS Code, a string `src/` foi substituída por `@project-manager-api/` em todos os arquivos na pasta `./apps/project-manager-api`
+
+Instalação de pacotes do `redis` e dos microserviços do `nestjs`: o parâmetro `--legacy-peer-deps` foi adicionado para forçar a resolução de dependências e obter sucesso na instalação dos pacotes necessários.
+
+```shell
+
+# [microservices package from nestjs](https://www.npmjs.com/package/@nestjs/microservices)
+# [NestJS repository](https://github.com/nestjs/nest)
+
+# [A robust, performance-focused and full-featured Redis client for Node.js](https://www.npmjs.com/package/ioredis)
+# [ioredis repository](https://github.com/redis/ioredis#readme)
+
+# [node-redis is a modern, high performance Redis client for Node.js.](https://www.npmjs.com/package/redis)
+# [node-redis repository](https://github.com/redis/node-redis)
+
+npm i --save @nestjs/microservices@10 ioredis redis@4 --legacy-peer-deps
+```
