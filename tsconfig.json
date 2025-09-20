@@ -21,6 +21,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@project-manager-api/*": [
+        "apps/project-manager-api/src/*"
+      ]
+    }
   }
 }

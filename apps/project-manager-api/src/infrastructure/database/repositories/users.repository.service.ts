@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IUsersRepository } from 'src/domain/repositories/users-repository.interface';
+import { IUsersRepository } from '@project-manager-api/domain/repositories/users-repository.interface';
 import { DataSource, DeepPartial, Repository } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
-import { IUser } from 'src/domain/interfaces/user.interface';
+import { IUser } from '@project-manager-api/domain/interfaces/user.interface';
 
 @Injectable()
 export class UsersRepositoryService

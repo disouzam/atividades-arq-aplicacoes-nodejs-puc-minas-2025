@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { IProject } from 'src/domain/interfaces/project.interface';
-import { ITask } from 'src/domain/interfaces/task.interface';
-import type { IUser } from 'src/domain/interfaces/user.interface';
+import { IProject } from '@project-manager-api/domain/interfaces/project.interface';
+import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import type { IUser } from '@project-manager-api/domain/interfaces/user.interface';
 import {
   Column,
   Entity,

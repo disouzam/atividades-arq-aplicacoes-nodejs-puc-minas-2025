@@ -10,9 +10,9 @@ import {
   Req,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { CreateTaskService } from 'src/domain/use-cases/tasks/create-task.service';
-import { GetAllTasksService } from 'src/domain/use-cases/tasks/get-all-tasks.service';
-import { GetTaskByIdService } from 'src/domain/use-cases/tasks/get-task-by-id.service';
+import { CreateTaskService } from '@project-manager-api/domain/use-cases/tasks/create-task.service';
+import { GetAllTasksService } from '@project-manager-api/domain/use-cases/tasks/get-all-tasks.service';
+import { GetTaskByIdService } from '@project-manager-api/domain/use-cases/tasks/get-task-by-id.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 
 @Controller('tasks')

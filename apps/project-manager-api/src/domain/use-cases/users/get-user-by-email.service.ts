@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IUser } from 'src/domain/interfaces/user.interface';
-import { UsersRepositoryService } from 'src/infrastructure/database/repositories/users.repository.service';
+import { IUser } from '@project-manager-api/domain/interfaces/user.interface';
+import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
 
 @Injectable()
 export class GetUserByEmailService {

@@ -7,11 +7,11 @@ import {
   Post,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { CreateUserService } from 'src/domain/use-cases/users/create-user.service';
-import { GetUserByIdService } from 'src/domain/use-cases/users/get-user-by-id.service';
-import { GetAllUsersService } from 'src/domain/use-cases/users/get-all-users.service';
+import { CreateUserService } from '@project-manager-api/domain/use-cases/users/create-user.service';
+import { GetUserByIdService } from '@project-manager-api/domain/use-cases/users/get-user-by-id.service';
+import { GetAllUsersService } from '@project-manager-api/domain/use-cases/users/get-all-users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { Public } from 'src/gateways/guards/auth-guard.service';
+import { Public } from '@project-manager-api/gateways/guards/auth-guard.service';
 
 @Controller('users')
 export class UsersController {

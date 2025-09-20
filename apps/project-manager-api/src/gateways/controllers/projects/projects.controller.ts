@@ -13,9 +13,9 @@ import {
   Post,
   Req,
 } from '@nestjs/common';
-import { CreateProjectService } from 'src/domain/use-cases/projects/create-project.service';
-import { GetAllProjectsService } from 'src/domain/use-cases/projects/get-all-projects.service';
-import { GetProjectByIdService } from 'src/domain/use-cases/projects/get-project-by-id.service';
+import { CreateProjectService } from '@project-manager-api/domain/use-cases/projects/create-project.service';
+import { GetAllProjectsService } from '@project-manager-api/domain/use-cases/projects/get-all-projects.service';
+import { GetProjectByIdService } from '@project-manager-api/domain/use-cases/projects/get-project-by-id.service';
 import { CreateProjectDto } from './dtos/create-project.dto';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 

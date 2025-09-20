@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { BaseUseCase } from '../base-use-case';
 import { CreateUserDto } from '../../../gateways/controllers/users/dtos/create-user.dto';
-import { UsersRepositoryService } from 'src/infrastructure/database/repositories/users.repository.service';
-import { IUser } from 'src/domain/interfaces/user.interface';
+import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
+import { IUser } from '@project-manager-api/domain/interfaces/user.interface';
 import { hash } from 'bcrypt';
 
 @Injectable()

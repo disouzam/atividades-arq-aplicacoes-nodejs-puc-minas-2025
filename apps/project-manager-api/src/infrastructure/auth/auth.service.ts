@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { GetUserByEmailService } from 'src/domain/use-cases/users/get-user-by-email.service';
+import { GetUserByEmailService } from '@project-manager-api/domain/use-cases/users/get-user-by-email.service';
 
 @Injectable()
 export class AuthService {

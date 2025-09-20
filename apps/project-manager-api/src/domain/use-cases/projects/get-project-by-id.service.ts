@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { IProject } from 'src/domain/interfaces/project.interface';
-import { ProjectsRepositoryService } from 'src/infrastructure/database/repositories/projects.repository.service';
-import { UsersRepositoryService } from 'src/infrastructure/database/repositories/users.repository.service';
+import { IProject } from '@project-manager-api/domain/interfaces/project.interface';
+import { ProjectsRepositoryService } from '@project-manager-api/infrastructure/database/repositories/projects.repository.service';
+import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
 
 @Injectable()
 export class GetProjectByIdService {

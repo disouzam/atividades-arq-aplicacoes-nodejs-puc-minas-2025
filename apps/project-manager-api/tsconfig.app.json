@@ -4,6 +4,13 @@
     "declaration": false,
     "outDir": "../../dist/apps/project-manager-api"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+  "include": [
+    "@project-manager-api/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
+    "**/*spec.ts"
+  ]
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { BaseUseCase } from '../base-use-case';
-import { ProjectsRepositoryService } from 'src/infrastructure/database/repositories/projects.repository.service';
-import { UsersRepositoryService } from 'src/infrastructure/database/repositories/users.repository.service';
-import { IProject } from 'src/domain/interfaces/project.interface';
+import { ProjectsRepositoryService } from '@project-manager-api/infrastructure/database/repositories/projects.repository.service';
+import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
+import { IProject } from '@project-manager-api/domain/interfaces/project.interface';
 
 @Injectable()
 export class GetAllProjectsService implements BaseUseCase {

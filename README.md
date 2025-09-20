@@ -628,3 +628,15 @@ Conversão do projeto para sistema de monorepos:
 ```shell
 nest generated app tasks
 ```
+
+Ajustes na resolução de referências por meio da modificação do caminho no `tsconfig.json`
+
+```json
+"paths": {
+  "@project-manager-api/*": [
+    "apps/project-manager-api/src/*"
+  ]
+}
+```
+
+Usando o recurso de busca do VS Code, a string `src/` foi substituída por `@project-manager-api/` em todos os arquivos na pasta `./apps/project-manager-api`
