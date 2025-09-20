@@ -159,7 +159,7 @@ echo > src/domain/entities/task.ts
 echo > src/domain/entities/user.ts
 ```
 
-### Atividade 2 - Arquitetura Clean
+# Atividade 2 - Arquitetura Clean
 
 Instalação das dependências adicionais
 
@@ -186,7 +186,7 @@ npm install --save @nestjs/typeorm typeorm sqlite3 class-validator class-transfo
 npm install --save @nestjs/mapped-types
 ```
 
-#### Estrutura dos módulos
+## Estrutura dos módulos
 
 ```shell
 nest g module domain
@@ -200,7 +200,7 @@ nest g module infrastructure/auth
 nest g module gateways
 ```
 
-#### Casos de uso
+## Casos de uso
 
 ```shell
 nest g service domain/use-cases/projects/get-all-projects --flat
@@ -217,7 +217,7 @@ nest g service domain/use-cases/users/get-user-by-id --flat
 nest g service domain/use-cases/users/get-all-users --flat
 ```
 
-#### Repositórios
+## Repositórios
 
 ```shell
 nest g service infrastructure/database/repositories/projects.repository --flat --no-spec
@@ -225,7 +225,7 @@ nest g service infrastructure/database/repositories/tasks.repository --flat --no
 nest g service infrastructure/database/repositories/users.repository --flat --no-spec
 ```
 
-#### Entidades
+## Entidades
 
 ```shell
 echo > src/infrastructure/database/entities/project.entity.ts
@@ -233,7 +233,7 @@ echo > src/infrastructure/database/entities/task.entity.ts
 echo > src/infrastructure/database/entities/user.entity.ts
 ```
 
-#### Implementação dos repositórios
+## Implementação dos repositórios
 
 ```shell
 mkdir src/domain/repositories
@@ -264,7 +264,7 @@ echo "@Injectable()" >> src/infrastructure/database/repositories/users.repositor
 echo "export class" >> src/infrastructure/database/repositories/users.repository.service.ts
 ```
 
-#### Implementação dos casos de uso
+## Implementação dos casos de uso
 
 ```shell
 mkdir src/gateways/controllers/projects/dtos
@@ -286,7 +286,7 @@ Interface para implementação dos casos de uso
 echo > src/domain/use-cases/base-use-case.ts
 ```
 
-#### Testes da API implementada até a atividade 2 usando Postman e Newman
+## Testes da API implementada até a atividade 2 usando Postman e Newman
 
 Instalação do newman usando a linha de comando
 
@@ -353,7 +353,7 @@ e o sumário de uma execução bem sucedida é apresentado no arquivo `Collectio
 └────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Capturas de tela dos testes usando o Postman e registro do banco de dados
+## Capturas de tela dos testes usando o Postman e registro do banco de dados
 
 Após a inicialização da aplicação, sem arquivo prévio de banco de dados, foram realizadas requisições para a API usando o Postman e os resultados e testes embutidos no Postman serão apresentados a seguir. A Figura 1 mostra o estado da aplicação logo após o startup usando o comando `npm run start`:
 
@@ -437,3 +437,175 @@ Por fim, requisições que devem retornar coleções - Usuários, Projetos e Tar
 
 **Figura 25**: Requisição para retornar todas as tarefas do banco - Testes
 ![GET All Tasks - Testes](./atividade-2-pictures/27-Get-All-Tasks-1-task-Tests.png)
+
+# Atividade 3 - Autenticação e Cache
+
+## Estrutura da aplicação
+
+### Pacotes adicionais - bcrypt, jwt, cache-manager e redis
+
+Alguns pacotes adicionais serão instalados para essa parte da atividade 3. O comando original é apresentado abaixo, junto com os resultados que apontam conflitos com os pacotes instalados anteriormente.
+
+```shell
+# Original command
+
+# [bcrypt](https://www.npmjs.com/package/bcrypt)
+# [bcrypt repository](https://github.com/kelektiv/node.bcrypt.js)
+
+# [Type definitions for bcrypt](https://www.npmjs.com/package/@types/bcrypt)
+# [Repository with types for bcrypt](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/bcrypt)
+
+# [JWT utilities module for Nest based on the jsonwebtoken package](https://www.npmjs.com/package/@nestjs/jwt)
+# [jwt repositories](https://github.com/nestjs/jwt)
+
+# [cache-manager module for Nest originally published as part of the @nestjs/common package. This package is a drop-in replacement for the deprecated CacheModule](https://www.npmjs.com/package/@nestjs/cache-manager/v/2.3.0)
+# [cache-manager module repository](https://github.com/nestjs/cache-manager#readme)
+
+# [A cache module for nodejs that allows easy wrapping of functions in cache, tiered caches, and a consistent interface. This module is now part of the Cacheable project](https://www.npmjs.com/package/cache-manager/v/5.7.6)
+# [Caching for Nodejs based on Keyv](https://github.com/jaredwray/cacheable#readme)
+
+# [Redis cache store for node-cache-manager](https://www.npmjs.com/package/cache-manager-redis-store/v/2.0.0)
+# [Redis cache store repository](https://github.com/dabroek/node-cache-manager-redis-store#readme)
+
+# [Redis](https://www.npmjs.com/package/redis)
+# [node-redis repository](https://github.com/redis/node-redis)
+
+npm install --save bcrypt @types/bcrypt @nestjs/jwt @nestjs/cache-manager@2 cache-manager@5 cache-manager-redis-store@2 redis
+```
+
+```shell
+# Results of original command - Redacted
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: project-manager-api@0.0.1
+npm error Found: @nestjs/common@11.1.6
+npm error node_modules/@nestjs/common
+npm error   @nestjs/common@"^11.0.1" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer @nestjs/common@"^9.0.0 || ^10.0.0" from @nestjs/cache-manager@2.3.0
+npm error node_modules/@nestjs/cache-manager
+npm error   @nestjs/cache-manager@"2" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error {REDACTED}\npm-cache\_logs\2025-09-14T19_54_12_471Z-eresolve-report.txt
+npm error A complete log of this run can be found in: {REDACTED}\npm-cache\_logs\2025-09-14T19_54_12_471Z-debug-0.log
+```
+
+Com o objetivo de resolver o conflito, tentar-se-á forçar a resolução de dependências.
+
+```shell
+# Modified command
+npm install --save bcrypt @types/bcrypt @nestjs/jwt @nestjs/cache-manager@2 cache-manager@5 cache-manager-redis-store@2 redis --legacy-peer-deps
+```
+
+### Novos módulos de infraestrutura
+
+Novos módulos serão criados conforme os comandos listados abaixo:
+
+```shell
+nest g module infrastructure/redis
+nest g module infrastructure/auth # (it didn't have any impact due to commands executed before)
+```
+
+Um novo serviço será criado dentro da pasta `auth`:
+
+```shell
+nest g service infrastructure/auth/auth --flat
+```
+
+Criação de arquivo com constante para uso com o jwt:
+
+```shell
+echo > src/infrastructure/auth/constants.ts
+```
+
+### Caso de uso - Recuperar usuários por e-mail
+
+O comando a ser executado é:
+
+```shell
+nest g service domain/use-cases/users/get-user-by-email --flat
+```
+
+### Criação de um guarda para controle da autenticação
+
+O comando para criação do guard é:
+
+```shell
+nest g service gateways/guards/auth-guard --flat
+```
+
+### Criação de um controller para o login
+
+O comando para criação do controller é:
+
+```shell
+nest g controller gateways/controllers/auth/auth --flat
+```
+
+### Criação de dtos para o login
+
+O comando para criação dos dtos de login via linha de comando é:
+
+```shell
+echo > src/gateways/controllers/auth/dtos/login.dto.ts
+```
+
+## Capturas de tela dos testes usando o Postman
+
+Para ilustrar o funcionamento das configurações de autenticação e autorização, uma pequena coleção ([Assignment #3 - Postman collection](./Collections/Assignment3.postman_collection.json)) foi criada com 3 requisições HTTP usando o Postman. A coleção criada para a atividade 2 foi usada como base.
+
+O tempo de expiração do token foi ajustado em 5 minutos por dois fatores: longo o suficiente para fazer duas ou mais requisições sequenciais sem necessitar obter um novo token e curto o suficiente para expirar durante os testes e permitir checar sua expiração.
+
+A primeira requisição consistiu na criação do usuário com uma senha. Nessa atividade, a senha passou a ser encriptada para ser salva no banco de dados, conforme implementação disponível no [Commit 4f4f640: Added encryption of password in creation of users](https://github.com/disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025/commit/4f4f6409b35bd3beedfe948525422321842b9932).
+
+A Figura 26 apresenta a requisição para a criação de usuários. Nota-se que essa requisição não carece de autorização nessa implementação presente. Num cenário real, a criação de usuários também é protegida para evitar abusos na criação e acessos ao sistema. Nota-se também que a senha é devolvida na resposta devidamente encriptada. Num cenário real, essa senha não seria devolvida dessa forma, pois não importa ao usuário saber o resultado da encriptação de sua senha, além de expor esse retorno a abusos.
+
+**Figura 26**: Criação de usuário
+![Criação de usuário - Atividade 3](./atividade-3-pictures/0-UserCreation.png)
+
+Na Figura 27, uma requisição para a rota de login (`/auth/login`) é feita para a obtenção do token de acesso. Essa também é uma requisição que dispensa autorização - sendo a senha e usuário corretos, o token de acesso será usado posteriormente para a autorização de outras rotas.
+
+**Figura 27**: Obtenção do token de acesso
+![Obtenção do token de acesso - Atividade 3](./atividade-3-pictures/1-Login.png)
+
+Para facilitar o uso dessa coleção da forma mais autônoma possível - mesmo que nesse cenário didático a coleção seja pequena e apenas uma requisição vá usar efetivamente o token de acesso - criação de projetos a partir de um usuário autenticado, foi implementado um script que é executado no retorno da requisição para coletar o token de acesso no corpo da resposta e salvar automaticamente na variável de ambiente `access_token` - dessa maneira, nenhuma intervenção manual é necessária para uso do token.
+
+O script para esse salvamento está reproduzido abaixo e na Figura 28 e está presente também no arquivo da coleção.
+
+```javascript
+const response = pm.response.json();
+const access_token_value = response['access_token'];
+
+pm.environment.set('access_token', access_token_value);
+
+console.info('New access token written to environment variable access_token');
+```
+
+**Figura 28**: Salvamento do token de acesso automaticamente
+![Salvamento do token de acesso na variável de ambiente - Atividade 3](./atividade-3-pictures/2-Login-Tests.png)
+
+E, por fim, temos a criação do projeto. Foram feitos dois testes para simular o uso ativo do token de acesso.
+
+Na Figura 29, mostra-se o resultado da requisição sem a presença do Bearer Token. Já a Figura 30 mostra o exmeplo de uma requisição bem sucedida. Note que o token é obtido automaticamente das variáveis de ambiente.
+
+**Figura 29**: Criação de projeto não autorizada pela falta de token de acesso
+![Criação de projeto não autorizada - Atividade 3](./atividade-3-pictures/3-ProjectCreation-UnauthorizedUser.png)
+
+**Figura 30**: Criação de projeto autorizada pela falta de token de acesso
+![Criação de projeto autorizada - Atividade 3](./atividade-3-pictures/4-ProjectCreation-AuthorizedUser.png)
+
+Voltando ao aspecto da encriptação da senha no banco de dados, as Figuras 31 e 32 mostram o salvamento da senha não encriptada como parte da atividade #2 e a senha encriptada como parte da atividade #3
+
+**Figura 31**: Senha não encriptada
+![Senha não encriptada - Atividade 2](./atividade-2-pictures/09-New-User-created-persisted-in-db.png)
+
+**Figura 32**: Senha encriptada
+![Senha encriptada - Atividade 3](./atividade-3-pictures/5-EncryptedPassword.png)

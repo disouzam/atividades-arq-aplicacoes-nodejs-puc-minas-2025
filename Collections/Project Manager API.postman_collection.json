@@ -11,12 +11,29 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const access_token_value = response['access_token'];\r",
+									"\r",
+									"pm.environment.set('access_token', access_token_value);\r",
+									"\r",
+									"console.info(\"New access token written to environment variable access_token\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"email@email3.com\",\n    \"password\": \"1234\"\n}",
+							"raw": "{\n  \"email\": \"36424026+disouzam@users.noreply.github.com\",\n  \"password\": \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,27 +60,48 @@
 			"item": [
 				{
 					"name": "Get All Tasks",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect a list with 1 task\", function () {\r",
+									"  var isArray = Array.isArray(response);\r",
+									"  pm.expect(isArray).to.be.true;\r",
+									"\r",
+									"  var number_of_users = response.count();\r",
+									"  pm.expect(number_of_users).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"status\": {\"type\": \"string\"}\r",
+									"  },\r",
+									"  \"required\": [\"id\", \"name\", \"status\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  var item = response[0];\r",
+									"  pm.expect(item).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiZW1haWxAZW1haWwyLmNvbSIsImlhdCI6MTcyNTMyMzM5NiwiZXhwIjoxNzI1MzI2OTk2fQ.jseJEB1mtBTjHVqBRral7Noqcd7jILCvw5Mg_W5xr0I",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
+						"header": [],
 						"url": {
 							"raw": "{{API_URL}}/tasks",
 							"host": [
@@ -78,19 +116,65 @@
 				},
 				{
 					"name": "Create Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201 - Created\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"status\": {\"type\": \"string\"},\r",
+									"    \"project\": {\"type\": \"object\"},\r",
+									"    \"user\": {\"type\": \"object\"},\r",
+									"    \"id\": {\"type\": \"number\"}\r",
+									"  },\r",
+									"  \"required\": [\"name\", \"status\", \"user\", \"project\", \"id\"]\r",
+									"};\r",
+									"\r",
+									"const projectObjectSchema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"description\": {\"type\": \"string\"}\r",
+									"  },\r",
+									"  \"required\": [\"id\", \"name\", \"description\"]\r",
+									"};\r",
+									"\r",
+									"const userObjectSchema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"  },\r",
+									"  \"required\": [\"id\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"  const response = pm.response.json();\r",
+									"  const userObject = response.user;\r",
+									"  const projectObject = response.project;\r",
+									"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+									"  pm.expect(projectObject).to.have.jsonSchema(projectObjectSchema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiZW1haWxAZW1haWwyLmNvbSIsImlhdCI6MTcyNTMyMzM5NiwiZXhwIjoxNzI1MzI2OTk2fQ.jseJEB1mtBTjHVqBRral7Noqcd7jILCvw5Mg_W5xr0I",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Comprar curso de nest para SEU NOME\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
+							"raw": "{\n    \"name\": \"Comprar curso de NestJS para Dickson Souza\",\n    \"projectId\": 1,\n    \"status\": \"pending\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -110,7 +194,35 @@
 					"response": []
 				},
 				{
-					"name": "Get Task",
+					"name": "Get Task By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 - OK\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"status\": {\"type\": \"string\"},\r",
+									"  },\r",
+									"  \"required\": [\"id\", \"name\", \"status\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -127,19 +239,137 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
 			"name": "Projects",
 			"item": [
 				{
+					"name": "Get All Projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect a list with 1 project\", function () {\r",
+									"  var isArray = Array.isArray(response);\r",
+									"  pm.expect(isArray).to.be.true;\r",
+									"\r",
+									"  var number_of_users = response.count();\r",
+									"  pm.expect(number_of_users).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"description\": {\"type\": \"string\"}\r",
+									"  },\r",
+									"  \"required\": [\"id\", \"name\", \"description\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  var item = response[0];\r",
+									"  pm.expect(item).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/projects",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201 - Created\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"description\": {\"type\": \"string\"},\r",
+									"    \"user\": {\"type\": \"object\"},\r",
+									"    \"id\": {\"type\": \"number\"}\r",
+									"  },\r",
+									"  \"required\": [\"name\", \"description\", \"user\", \"id\"]\r",
+									"};\r",
+									"\r",
+									"const userObjectSchema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"  },\r",
+									"  \"required\": [\"id\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"  const response = pm.response.json();\r",
+									"  const userObject = response.user;\r",
+									"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Lista de compras do SEU NOME\",\n    \"description\": \"lista basica\"\n}",
+							"raw": "{\n    \"name\": \"Lista de compras de Dickson Souza\",\n    \"description\": \"lista basica\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,24 +389,35 @@
 					"response": []
 				},
 				{
-					"name": "Get All Projects",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/projects",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"projects"
-							]
+					"name": "Get Project By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 - OK\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\"type\": \"number\"},\r",
+									"    \"name\": {\"type\": \"string\"},\r",
+									"    \"description\": {\"type\": \"string\"},\r",
+									"  },\r",
+									"  \"required\": [\"id\", \"name\", \"description\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Project",
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -193,6 +434,28 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -200,21 +463,50 @@
 			"item": [
 				{
 					"name": "Get All Users",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect a list with 1 user\", function () {\r",
+									"  var isArray = Array.isArray(response);\r",
+									"  pm.expect(isArray).to.be.true;\r",
+									"\r",
+									"  var number_of_users = response.count();\r",
+									"  pm.expect(number_of_users).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"firstName\": {\"type\": \"string\"},\r",
+									"    \"lastName\": {\"type\": \"string\"},\r",
+									"    \"email\": {\"type\": \"string\"},\r",
+									"    \"password\": {\"type\": \"string\"},\r",
+									"    \"id\": {\"type\": \"number\"}\r",
+									"  },\r",
+									"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  var item = response[0];\r",
+									"  pm.expect(item).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{API_URL}}/users",
 							"host": [
@@ -228,37 +520,37 @@
 					"response": []
 				},
 				{
-					"name": "Get User by Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{API_URL}}/users/1",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"users",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201 - Created\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"firstName\": {\"type\": \"string\"},\r",
+									"    \"lastName\": {\"type\": \"string\"},\r",
+									"    \"email\": {\"type\": \"string\"},\r",
+									"    \"password\": {\"type\": \"string\"},\r",
+									"    \"id\": {\"type\": \"number\"}\r",
+									"  },\r",
+									"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -282,8 +574,88 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 - OK\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"firstName\": {\"type\": \"string\"},\r",
+									"    \"lastName\": {\"type\": \"string\"},\r",
+									"    \"email\": {\"type\": \"string\"},\r",
+									"    \"password\": {\"type\": \"string\"},\r",
+									"    \"id\": {\"type\": \"number\"}\r",
+									"  },\r",
+									"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Validate response body schema\", () => {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/users/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
