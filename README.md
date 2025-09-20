@@ -656,3 +656,9 @@ Instalação de pacotes do `redis` e dos microserviços do `nestjs`: o parâmetr
 
 npm i --save @nestjs/microservices@10 ioredis redis@4 --legacy-peer-deps
 ```
+
+Criação de uma biblioteca compartilhada entre as aplicações para compartilhar arquivos e interfaces
+
+```shell
+nest generate lib common
+```
