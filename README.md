@@ -704,3 +704,11 @@ mv ./apps/project-manager-api/src/infrastructure/database/repositories/tasks.rep
 cp ./apps/project-manager-api/src/gateways/controllers/tasks/tasks.controller.ts ./apps/tasks/src/gateways/controllers/tasks.controller.ts
 mv -t ./apps/tasks/src/gateways/controllers/dtos ./apps/project-manager-api/src/gateways/controllers/tasks/dtos/*
 ```
+
+Criar módulos no pacote `tasks`:
+
+```shell
+echo > apps/tasks/src/domain/domain.module.ts
+echo > apps/tasks/src/gateways/gateways.module.ts
+echo > apps/tasks/src/infrastructure/infrastructure.module.ts
+```
