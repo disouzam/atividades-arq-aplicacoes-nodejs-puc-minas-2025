@@ -11,8 +11,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TaskEntity } from './task.entity';
-import { UserEntity } from './user.entity';
+import { TaskEntity } from '@tasks-api/infrastructure/entities/task.entity';
+import { UserEntity } from '@project-manager-api/infrastructure/database/entities/user.entity';
 
 @Entity('project')
 export class ProjectEntity implements IProject {

@@ -10,8 +10,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ProjectEntity } from './project.entity';
-import { UserEntity } from './user.entity';
+import { ProjectEntity } from '@project-manager-api/infrastructure/database/entities/project.entity';
+import { UserEntity } from '@project-manager-api/infrastructure/database/entities/user.entity';
 
 @Entity('tasks')
 export class TaskEntity implements ITask {

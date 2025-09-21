@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { ProjectsRepositoryService } from './repositories/projects.repository.service';
 import { UsersRepositoryService } from './repositories/users.repository.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
-import { ProjectEntity } from './entities/project.entity';
-import { TaskEntity } from 'apps/tasks/src/infrastructure/entities/task.entity';
+import { UserEntity } from '@project-manager-api/infrastructure/database/entities/user.entity';
+import { ProjectEntity } from '@project-manager-api/infrastructure/database/entities/project.entity';
+import { TaskEntity } from '@tasks-api/infrastructure/entities/task.entity';
 
 @Module({
   imports: [
