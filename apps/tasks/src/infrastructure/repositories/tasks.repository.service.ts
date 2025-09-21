@@ -3,7 +3,7 @@ import { Task } from '@project-manager-api/domain/entities/task';
 import { DataSource, DeepPartial, Repository } from 'typeorm';
 import { TaskEntity } from '../entities/task.entity';
 import { ITasksRepository } from '@project-manager-api/domain/repositories/tasks-repository.interface';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 
 @Injectable()
 export class TasksRepositoryService

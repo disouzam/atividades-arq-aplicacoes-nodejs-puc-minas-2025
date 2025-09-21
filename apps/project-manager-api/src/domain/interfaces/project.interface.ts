@@ -1,4 +1,4 @@
-import { ITask } from './task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 import { IUser } from './user.interface';
 
 export interface IProject {

@@ -3,7 +3,7 @@ import { BaseUseCase } from '../base-use-case';
 import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
 import { TasksRepositoryService } from '@project-manager-api/infrastructure/database/repositories/tasks.repository.service';
 import { UpdateTaskDto } from '@project-manager-api/gateways/controllers/tasks/dtos/update-task.dto';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 
 @Injectable()
 export class UpdateTaskService implements BaseUseCase {
