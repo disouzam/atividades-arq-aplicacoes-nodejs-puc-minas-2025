@@ -609,3 +609,106 @@ Voltando ao aspecto da encriptação da senha no banco de dados, as Figuras 31 e
 
 **Figura 32**: Senha encriptada
 ![Senha encriptada - Atividade 3](./atividade-3-pictures/5-EncryptedPassword.png)
+
+# Atividade 4
+
+Para a atividade 4, será utilizado o Redis para implementação da comunicação entre microserviços. As rotas / serviços de tarefas serão extraídos do projeto principal e será implementado como um microserviço.
+
+## Configurações
+
+Criação de arquivo `docker-compose.yml`:
+
+```shell
+echo > docker-compose.yml
+code docker-compose.yml
+```
+
+Conversão do projeto para sistema de monorepos:
+
+```shell
+nest generated app tasks
+```
+
+Ajustes na resolução de referências por meio da modificação do caminho no `tsconfig.json`
+
+```json
+"paths": {
+  "@project-manager-api/*": [
+    "apps/project-manager-api/src/*"
+  ]
+}
+```
+
+Usando o recurso de busca do VS Code, a string `src/` foi substituída por `@project-manager-api/` em todos os arquivos na pasta `./apps/project-manager-api`
+
+Instalação de pacotes do `redis` e dos microserviços do `nestjs`: o parâmetro `--legacy-peer-deps` foi adicionado para forçar a resolução de dependências e obter sucesso na instalação dos pacotes necessários.
+
+```shell
+
+# [microservices package from nestjs](https://www.npmjs.com/package/@nestjs/microservices)
+# [NestJS repository](https://github.com/nestjs/nest)
+
+# [A robust, performance-focused and full-featured Redis client for Node.js](https://www.npmjs.com/package/ioredis)
+# [ioredis repository](https://github.com/redis/ioredis#readme)
+
+# [node-redis is a modern, high performance Redis client for Node.js.](https://www.npmjs.com/package/redis)
+# [node-redis repository](https://github.com/redis/node-redis)
+
+npm i --save @nestjs/microservices@10 ioredis redis@4 --legacy-peer-deps
+```
+
+Criação de uma biblioteca compartilhada entre as aplicações para compartilhar arquivos e interfaces
+
+```shell
+nest generate lib common
+```
+
+Replicação da arquitetura clean dentro do pacote Tasks:
+
+```shell
+mkdir apps/tasks/src/gateways
+echo > apps/tasks/src/gateways/.gitignore
+mkdir apps/tasks/src/gateways/controllers
+echo > apps/tasks/src/gateways/controllers/.gitignore
+mkdir apps/tasks/src/gateways/controllers/dtos
+echo > apps/tasks/src/gateways/controllers/dtos/.gitignore
+mkdir apps/tasks/src/infrastructure
+echo > apps/tasks/src/infrastructure/.gitignore
+mkdir apps/tasks/src/infrastructure/entities
+echo > apps/tasks/src/infrastructure/entities/.gitignore
+mkdir apps/tasks/src/infrastructure/database
+echo > apps/tasks/src/infrastructure/database/.gitignore
+mkdir apps/tasks/src/infrastructure/repositories
+echo > apps/tasks/src/infrastructure/repositories/.gitignore
+mkdir apps/tasks/src/domain
+echo > apps/tasks/src/domain/.gitignore
+mkdir apps/tasks/src/domain/entities
+echo > apps/tasks/src/domain/entities/.gitignore
+mkdir apps/tasks/src/domain/interfaces
+echo > apps/tasks/src/domain/interfaces/.gitignore
+mkdir apps/tasks/src/domain/repositories
+echo > apps/tasks/src/domain/repositories/.gitignore
+mkdir apps/tasks/src/domain/use-cases
+echo > apps/tasks/src/domain/use-cases/.gitignore
+```
+
+Todos os arquivos relacionados às `Tasks` dentro do projecto `project-manager-api` serão movidos ou terão seu conteúdo migrado para o pacote `tasks`
+
+```shell
+mv ./apps/project-manager-api/src/domain/entities/task.ts ./apps/tasks/src/domain/entities
+mv ./apps/project-manager-api/src/domain/interfaces/task.interface.ts ./apps/tasks/src/domain
+mv ./apps/project-manager-api/src/domain/repositories/tasks-repository.interface.ts ./apps/tasks/src/domain/repositories
+mv -t ./apps/tasks/src/domain/use-cases ./apps/project-manager-api/src/domain/use-cases/tasks/*
+mv ./apps/project-manager-api/src/infrastructure/database/entities/task.entity.ts ./apps/tasks/src/infrastructure/entities
+mv ./apps/project-manager-api/src/infrastructure/database/repositories/tasks.repository.service.ts ./apps/tasks/src/infrastructure/repositories
+cp ./apps/project-manager-api/src/gateways/controllers/tasks/tasks.controller.ts ./apps/tasks/src/gateways/controllers/tasks.controller.ts
+mv -t ./apps/tasks/src/gateways/controllers/dtos ./apps/project-manager-api/src/gateways/controllers/tasks/dtos/*
+```
+
+Criar módulos no pacote `tasks`:
+
+```shell
+echo > apps/tasks/src/domain/domain.module.ts
+echo > apps/tasks/src/gateways/gateways.module.ts
+echo > apps/tasks/src/infrastructure/infrastructure.module.ts
+```

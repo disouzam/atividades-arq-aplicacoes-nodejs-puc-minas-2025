@@ -1,0 +1,10 @@
+services:
+  redis: # Name of container
+    image: redis
+    ports: 
+      - 6379:6379 # Expose port 6379
+    volumes:
+      - redis:/data # Persist data in a named volume
+volumes:
+  redis: # Define named volume
+    driver: local
