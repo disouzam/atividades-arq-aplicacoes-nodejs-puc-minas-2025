@@ -34,6 +34,7 @@ export class TasksController {
   @MessagePattern({ cmd: 'get_task_by_id' })
   async findOne(@Payload() data: { userId: number; taskId: number }) {
     try {
+      console.log('Buscando tarefa por ID...');
       return await this.getTaskByIdUseCase.execute({
         userId: data.userId,
         taskId: data.taskId,
@@ -46,6 +47,8 @@ export class TasksController {
   @MessagePattern({ cmd: 'create_task' })
   async create(@Payload() data: { task: CreateTaskDto; userId: number }) {
     try {
+      console.log('Criando tarefa...');
+
       return await this.createTaskUseCase.execute({
         userId: data.userId,
         task: data.task,
