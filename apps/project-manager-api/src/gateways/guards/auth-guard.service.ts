@@ -36,6 +36,7 @@ export class AuthGuardService implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
+      console.error('\nToken inválido');
       throw new UnauthorizedException();
     }
 
@@ -44,7 +45,15 @@ export class AuthGuardService implements CanActivate {
         secret: jwtConstants.secret,
       });
       request['user'] = payload;
-    } catch {
+    } catch (error) {
+      console.error(
+        `\nToken incorreto devido ao erro: ${error.name}-${error.message}`,
+      );
+
+      if (error.name === 'TokenExpiredError') {
+        console.error(`\nToken expirado em: ${error.expiredAt}`);
+      }
+
       throw new UnauthorizedException();
     }
 

@@ -10,7 +10,17 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @Public()
-  login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto.email, loginDto.password);
+  async login(@Body() loginDto: LoginDto) {
+    console.log(
+      `\nObtenção de access_token para o usuário ${JSON.stringify(loginDto)}`,
+    );
+
+    const result = await this.authService.login(
+      loginDto.email,
+      loginDto.password,
+    );
+
+    console.log(`Access token obtido com sucesso: ${JSON.stringify(result)}`);
+    return result;
   }
 }

@@ -43,10 +43,20 @@ export class UsersController {
   @Public()
   async create(@Body() createUserDto: CreateUserDto) {
     try {
-      return await this.createUserUseCase.execute({
+      console.log(
+        `\nCriando usuário com os dados: ${JSON.stringify(createUserDto)}`,
+      );
+
+      const result = await this.createUserUseCase.execute({
         ...createUserDto,
       });
+
+      console.log(`Usuário criado com sucesso. ID do usuário: ${result.id}`);
+      return result;
     } catch (error) {
+      console.error(
+        `\nErro na criação do usuário: ${JSON.stringify(createUserDto)} devido ao erro: ${error.message}`,
+      );
       throw new UnprocessableEntityException(error.message);
     }
   }

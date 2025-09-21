@@ -40,7 +40,7 @@ export class ProjectsController {
         `user:${loggedUser.sub}/all-projects`,
       );
 
-      console.log('Cached Data:', cachedData);
+      console.log('\nCached Data:', cachedData);
 
       if (cachedData) {
         console.log('Returning cached data');
@@ -74,11 +74,15 @@ export class ProjectsController {
   async create(@Req() request, @Body() createProjectDto: CreateProjectDto) {
     try {
       const loggedUser = request.user;
+      console.log(`\nCriação do projeto: ${createProjectDto.name}`);
 
-      return await this.createProjectUseCase.execute({
+      const createdProject = await this.createProjectUseCase.execute({
         userId: loggedUser.sub,
         project: createProjectDto,
       });
+
+      console.log('Projeto criado com sucesso:', createdProject);
+      return createdProject;
     } catch (error) {
       throw new NotFoundException(error.message);
     }
