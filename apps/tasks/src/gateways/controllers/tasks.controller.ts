@@ -1,18 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
-  Body,
   Controller,
-  Get,
   NotFoundException,
-  Param,
-  Post,
-  Req,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { CreateTaskService } from '@project-manager-api/domain/use-cases/tasks/create-task.service';
-import { GetAllTasksService } from '@project-manager-api/domain/use-cases/tasks/get-all-tasks.service';
-import { GetTaskByIdService } from '@project-manager-api/domain/use-cases/tasks/get-task-by-id.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { CreateTaskService } from '../../domain/use-cases/create-task.service';
+import { GetAllTasksService } from '../../domain/use-cases/get-all-tasks.service';
+import { GetTaskByIdService } from '../../domain/use-cases/get-task-by-id.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 
 @Controller('tasks')
@@ -23,39 +20,35 @@ export class TasksController {
     private readonly createTaskUseCase: CreateTaskService,
   ) {}
 
-  @Get()
-  async findAll(@Req() request) {
+  @MessagePattern({ cmd: 'get_tasks' })
+  async findAll(@Payload() data: { userId: number }) {
     try {
-      const loggedUser = request.user;
+      console.log('Recebendo mensagem para Tasks');
 
-      return await this.getAllTasksUseCase.execute({ userId: loggedUser.sub });
+      return await this.getAllTasksUseCase.execute({ userId: data.userId });
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
-  @Get(':id')
-  async findOne(@Req() request, @Param('id') id: number) {
+  @MessagePattern({ cmd: 'get_task_by_id' })
+  async findOne(@Payload() data: { userId: number; taskId: number }) {
     try {
-      const loggedUser = request.user;
-
       return await this.getTaskByIdUseCase.execute({
-        userId: loggedUser.sub,
-        taskId: id,
+        userId: data.userId,
+        taskId: data.taskId,
       });
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
-  @Post()
-  async create(@Req() request, @Body() createTaskDto: CreateTaskDto) {
+  @MessagePattern({ cmd: 'create_task' })
+  async create(@Payload() data: { task: CreateTaskDto; userId: number }) {
     try {
-      const loggedUser = request.user;
-
       return await this.createTaskUseCase.execute({
-        userId: loggedUser.sub,
-        task: createTaskDto,
+        userId: data.userId,
+        task: data.task,
       });
     } catch (error) {
       throw new UnprocessableEntityException(error.message);

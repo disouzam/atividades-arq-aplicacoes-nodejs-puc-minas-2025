@@ -1,34 +1,35 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   Body,
   Controller,
   Get,
+  Inject,
   NotFoundException,
   Param,
   Post,
   Req,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { CreateTaskService } from '@project-manager-api/domain/use-cases/tasks/create-task.service';
-import { GetAllTasksService } from '@project-manager-api/domain/use-cases/tasks/get-all-tasks.service';
-import { GetTaskByIdService } from '@project-manager-api/domain/use-cases/tasks/get-task-by-id.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('tasks')
 export class TasksController {
   constructor(
-    private readonly getAllTasksUseCase: GetAllTasksService,
-    private readonly getTaskByIdUseCase: GetTaskByIdService,
-    private readonly createTaskUseCase: CreateTaskService,
+    @Inject('PROJECT_MANAGER_API') private readonly redisClient: ClientProxy,
   ) {}
 
   @Get()
   async findAll(@Req() request) {
     try {
       const loggedUser = request.user;
+      console.log('Disparando mensagem para Tasks');
 
-      return await this.getAllTasksUseCase.execute({ userId: loggedUser.sub });
+      return await this.redisClient
+        .send({ cmd: 'get-tasks' }, { userId: loggedUser.sub })
+        .toPromise();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -39,10 +40,9 @@ export class TasksController {
     try {
       const loggedUser = request.user;
 
-      return await this.getTaskByIdUseCase.execute({
-        userId: loggedUser.sub,
-        taskId: id,
-      });
+      return await this.redisClient
+        .send({ cmd: 'get_task_by_id' }, { userId: loggedUser.sub, taskId: id })
+        .toPromise();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -53,10 +53,12 @@ export class TasksController {
     try {
       const loggedUser = request.user;
 
-      return await this.createTaskUseCase.execute({
-        userId: loggedUser.sub,
-        task: createTaskDto,
-      });
+      return await this.redisClient
+        .send(
+          { cmd: 'create_task' },
+          { userId: loggedUser.sub, task: createTaskDto },
+        )
+        .toPromise();
     } catch (error) {
       throw new UnprocessableEntityException(error.message);
     }
