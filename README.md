@@ -712,3 +712,51 @@ echo > apps/tasks/src/domain/domain.module.ts
 echo > apps/tasks/src/gateways/gateways.module.ts
 echo > apps/tasks/src/infrastructure/infrastructure.module.ts
 ```
+
+## Capturas de tela dos testes usando o Postman
+
+Uma nova coleção foi criada para a atividade 4. As primeiras requisições fazem a carga inicial do banco de dados para em seguida permitir o teste das rotas que são manipuladas pelo microserviço de `Tasks`, que foi extraído - em relação à atividade 3 - do projeto `project-manager-api`.
+
+Nessa tarefa, três diferentes componentes arquiteturais são necessários:
+
+1. API de gestão de projetos - criada nas atividades 1 a 3 - `project-manager-api`, inicializada via `npm run start:dev`
+1. Instância do Redis para manipular os eventos de tarefas enviados pelo `project-manager-api` e processado pelo microserviço de `Tasks`, inicializada via `docker-compose up --build`
+1. E, por fim, o microserviço de tarefas `Tasks` que foi extraído da API de gestão de projetos e inicalizada via `nest start tasks --watch`
+
+As Figuras 33 a 44 mostram os resultados dessa implementação e as legendas proveem explicação adicional sobre cada uma delas. Nas Figuras que exibem o console bipartido horizontalmente, o painel superior é a API `project-manager-api` e o painel inferior é o microserviço `Tasks`. Apenas as operações que envolvem as tarefas produzirão logs no painel inferior mas todas as imagens mostrarão ambos os painéis incondicionalmente.
+
+**Figura 33**: Criação de usuário para popular o banco de dados e permitir as próximas operações
+![Criação de usuário para popular o banco de dados e permitir as próximas operações - Atividade 4](./atividade-4-pictures/0-UserCreation.png)
+
+**Figura 34**: Log de criação do usuário. Note que nesse e em outras imagens nesse repositório as senhas enviadas no corpo da requisição são exibidas em texto plano nos logs a título de exemplo educativo. Essa não é uma prática segura nem recomendada para o uso em sistemas em produção.
+![Log do project-manager-api - Atividade 4](./atividade-4-pictures/1-UserCreation-ConsoleLogs.png)
+
+**Figura 35**: Operação de login para obtenção de token de acesso
+![Operação de login para obtenção de token de acesso - Atividade 4](./atividade-4-pictures/2-Login.png)
+
+**Figura 36**: Detalhes da operação de login: Log exibindo os dados do corpo da requisição, data e horário de expiração do token de acesso e token propriamente dito
+![Log exibindo os dados do corpo da requisição, data e horário de expiração do token de acesso e token propriamente dito - Atividade 4](./atividade-4-pictures/3-Login-ConsoleLogs.png)
+
+**Figura 37**: Criação de um novo projeto
+![Criação de um novo projeto - Atividade 4](./atividade-4-pictures/4-ProjectCreation.png)
+
+**Figura 38**: Log da criação de novo projeto. Esse e outros logs fazem replicação da resposta enviada ao cliente da API
+![Log da criação de novo projeto. Esse e outros logs fazem replicação da resposta enviada ao cliente da API - Atividade 4](./atividade-4-pictures/5-ProjectCreation-ConsoleLogs.png)
+
+**Figura 39**: Criação de nova tarefa
+![Criação de nova tarefa - Atividade 4](./atividade-4-pictures/6-TaskCreation.png)
+
+**Figura 40**: Log da criação da nova tarefa mostrando o envio de um evento do `project-manager-api` para o microserviço `Tasks`. Apesar desses logs não apresentarem timestamps, a sequência de exibição é sempre no painel superior seguida pelo painel inferior, visto que o microserviço `Tasks` apenas reage aos comandos solicitados.
+![Log da criação da nova tarefa mostrando o envio de um evento do `project-manager-api` para o microserviço `Tasks` - Atividade 4](./atividade-4-pictures/7-TaskCreation-ConsoleLogs.png)
+
+**Figura 41**: Obtenção de uma tarefa por meio de seu identificador único
+![Obtenção de uma tarefa por meio de seu identificador único - Atividade 4](./atividade-4-pictures/8-GetTaskById.png)
+
+**Figura 42**: Log da consulta de tarefa pelo seu identificador
+![Log da consulta de tarefa pelo seu identificador - Atividade 4](./atividade-4-pictures/9-GetTaskById-ConsoleLogs.png)
+
+**Figura 43**: Obtenção de todas as tarefas cadastradas
+![Obtenção de todas as tarefas cadastradas - Atividade 4](./atividade-4-pictures/10-GetAllTasks.png)
+
+**Figura 44**: Log da obtenção de todas as tarefas cadastradas
+![Log da obtenção de todas as tarefas cadastradas - Atividade 4](./atividade-4-pictures/11-GetAllTasks-ConsoleLogs.png)
