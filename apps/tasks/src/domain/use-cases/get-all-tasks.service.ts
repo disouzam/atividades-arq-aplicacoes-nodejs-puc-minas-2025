@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BaseUseCase } from './base-use-case';
 import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
-import { TasksRepositoryService } from '@project-manager-api/infrastructure/database/repositories/tasks.repository.service';
+import { TasksRepositoryService } from '../../infrastructure/repositories/tasks.repository.service';
 import { ITask } from '@tasks-api/domain/task.interface';
 
 @Injectable()
