@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "084a417f-679b-4563-bf1e-06508f8d68b7",
+		"name": "Assignment4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15107572"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"firstName\": {\"type\": \"string\"},\r",
+							"    \"lastName\": {\"type\": \"string\"},\r",
+							"    \"email\": {\"type\": \"string\"},\r",
+							"    \"password\": {\"type\": \"string\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"firstName\", \"lastName\", \"email\", \"password\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Dickson\",\n  \"lastName\": \"Souza\",\n  \"email\": \"36424026+disouzam@users.noreply.github.com\",\n  \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/users",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"const access_token_value = response['access_token'];\r",
+							"\r",
+							"pm.environment.set('access_token', access_token_value);\r",
+							"\r",
+							"console.info(\"New access token written to environment variable access_token\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"36424026+disouzam@users.noreply.github.com\",\n  \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/auth/login",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 - Created\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"name\": {\"type\": \"string\"},\r",
+							"    \"description\": {\"type\": \"string\"},\r",
+							"    \"user\": {\"type\": \"object\"},\r",
+							"    \"id\": {\"type\": \"number\"}\r",
+							"  },\r",
+							"  \"required\": [\"name\", \"description\", \"user\", \"id\"]\r",
+							"};\r",
+							"\r",
+							"const userObjectSchema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\"type\": \"number\"},\r",
+							"  },\r",
+							"  \"required\": [\"id\"]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate response body schema\", () => {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"  const response = pm.response.json();\r",
+							"  const userObject = response.user;\r",
+							"  pm.expect(userObject).to.have.jsonSchema(userObjectSchema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lista de compras de Dickson Souza\",\n    \"description\": \"lista basica\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/projects",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
