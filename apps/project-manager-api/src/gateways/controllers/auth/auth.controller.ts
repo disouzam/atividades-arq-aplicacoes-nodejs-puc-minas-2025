@@ -12,7 +12,7 @@ export class AuthController {
   @Public()
   async login(@Body() loginDto: LoginDto) {
     console.log(
-      `Obtenção de access_token para o usuário ${JSON.stringify(loginDto)}`,
+      `\nObtenção de access_token para o usuário ${JSON.stringify(loginDto)}`,
     );
 
     const result = await this.authService.login(
