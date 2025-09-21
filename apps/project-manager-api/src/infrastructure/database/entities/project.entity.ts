@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { IProject } from '@project-manager-api/domain/interfaces/project.interface';
 import { ITask } from '@tasks-api/domain/task.interface';
