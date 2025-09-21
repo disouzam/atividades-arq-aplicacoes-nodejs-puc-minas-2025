@@ -23,10 +23,24 @@ export class TasksController {
   @MessagePattern({ cmd: 'get_tasks' })
   async findAll(@Payload() data: { userId: number }) {
     try {
-      console.log('Recebendo mensagem para Tasks');
+      console.log(
+        `Recebendo mensagem para Tasks para listar todas as tarefas para o usuários ${data.userId}...`,
+      );
 
-      return await this.getAllTasksUseCase.execute({ userId: data.userId });
+      const result = await this.getAllTasksUseCase.execute({
+        userId: data.userId,
+      });
+
+      console.log(
+        'Tarefas listadas com sucesso pelo microserviço de Tasks:',
+        result,
+      );
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro ao listas tarefas no microserviço de Tasks: ${error.name}-${error.message}`,
+      );
       throw new NotFoundException(error.message);
     }
   }
@@ -34,12 +48,22 @@ export class TasksController {
   @MessagePattern({ cmd: 'get_task_by_id' })
   async findOne(@Payload() data: { userId: number; taskId: number }) {
     try {
-      console.log('Buscando tarefa por ID...');
-      return await this.getTaskByIdUseCase.execute({
+      console.log(
+        `Buscando tarefa por ID=${data.taskId} no microserviço de Tasks...`,
+      );
+
+      const result = await this.getTaskByIdUseCase.execute({
         userId: data.userId,
         taskId: data.taskId,
       });
+
+      console.log('Tarefa encontrada no microserviço de Tasks:', result);
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro ao listas tarefa cujo ID é ${data.taskId} no microserviço de Tasks: ${error.name}-${error.message}`,
+      );
       throw new NotFoundException(error.message);
     }
   }
@@ -47,13 +71,25 @@ export class TasksController {
   @MessagePattern({ cmd: 'create_task' })
   async create(@Payload() data: { task: CreateTaskDto; userId: number }) {
     try {
-      console.log('Criando tarefa...');
+      console.log(
+        `Criando tarefa no microserviço de Tasks: ${data.task.name}...`,
+      );
 
-      return await this.createTaskUseCase.execute({
+      const result = await this.createTaskUseCase.execute({
         userId: data.userId,
         task: data.task,
       });
+
+      console.log(
+        'Tarefa criada com sucesso no microserviço de Tasks:',
+        result,
+      );
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro ao criar nova tarefa no microserviço de Tasks: ${error.name}-${error.message}`,
+      );
       throw new UnprocessableEntityException(error.message);
     }
   }
