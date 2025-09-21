@@ -28,7 +28,7 @@ export class TasksController {
       console.log('Disparando mensagem para Tasks');
 
       return await this.redisClient
-        .send({ cmd: 'get-tasks' }, { userId: loggedUser.sub })
+        .send({ cmd: 'get_tasks' }, { userId: loggedUser.sub })
         .toPromise();
     } catch (error) {
       throw new NotFoundException(error.message);
