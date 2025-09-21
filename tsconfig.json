@@ -30,7 +30,10 @@
       ],
       "@project-manager-api/*": [
         "apps/project-manager-api/src/*"
-      ]
+      ],
+      "@tasks-api/*": [
+        "apps/tasks/src/*"
+      ],
     }
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import type { IProject } from '@project-manager-api/domain/interfaces/project.interface';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 import type { IUser } from '@project-manager-api/domain/interfaces/user.interface';
 import {
   Column,
@@ -10,8 +10,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ProjectEntity } from './project.entity';
-import { UserEntity } from './user.entity';
+import { ProjectEntity } from '@project-manager-api/infrastructure/database/entities/project.entity';
+import { UserEntity } from '@project-manager-api/infrastructure/database/entities/user.entity';
 
 @Entity('tasks')
 export class TaskEntity implements ITask {

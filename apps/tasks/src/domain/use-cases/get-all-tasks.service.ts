@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@nestjs/common';
-import { BaseUseCase } from '../base-use-case';
+import { BaseUseCase } from './base-use-case';
 import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
-import { TasksRepositoryService } from '@project-manager-api/infrastructure/database/repositories/tasks.repository.service';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { TasksRepositoryService } from '../../infrastructure/repositories/tasks.repository.service';
+import { ITask } from '@tasks-api/domain/task.interface';
 
 @Injectable()
 export class GetAllTasksService implements BaseUseCase {

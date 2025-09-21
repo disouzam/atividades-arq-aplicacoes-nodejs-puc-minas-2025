@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch via NPM",
+      "name": "Project Manager API",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
@@ -18,5 +18,19 @@
       "console": "integratedTerminal",
       "trace": true
     },
+    {
+      "name": "Tasks microservice",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "nest",
+      "runtimeArgs": [
+        "start",
+        "tasks",
+        "--watch"
+      ],
+      "console": "integratedTerminal",
+      "trace": true
+    }
   ]
 }

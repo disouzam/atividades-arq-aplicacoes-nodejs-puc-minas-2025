@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { BaseUseCase } from '../base-use-case';
+import { BaseUseCase } from './base-use-case';
 import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
-import { TasksRepositoryService } from '@project-manager-api/infrastructure/database/repositories/tasks.repository.service';
+import { TasksRepositoryService } from '@tasks-api/infrastructure/repositories/tasks.repository.service';
 import { ProjectsRepositoryService } from '@project-manager-api/infrastructure/database/repositories/projects.repository.service';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 import { CreateTaskDto } from '@project-manager-api/gateways/controllers/tasks/dtos/create-task.dto';
 
 @Injectable()

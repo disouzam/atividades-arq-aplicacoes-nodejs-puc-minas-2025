@@ -1,9 +1,9 @@
 import { IUser } from '@project-manager-api/domain/interfaces/user.interface';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { ProjectEntity } from './project.entity';
-import { TaskEntity } from './task.entity';
+import { ProjectEntity } from '@project-manager-api/infrastructure/database/entities/project.entity';
+import { TaskEntity } from '@tasks-api/infrastructure/entities/task.entity';
 import { IProject } from '@project-manager-api/domain/interfaces/project.interface';
-import { ITask } from '@project-manager-api/domain/interfaces/task.interface';
+import { ITask } from '@tasks-api/domain/task.interface';
 
 @Entity('user')
 export class UserEntity implements IUser {

@@ -5,7 +5,7 @@
     "outDir": "../../dist/apps/project-manager-api"
   },
   "include": [
-    "@project-manager-api/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
