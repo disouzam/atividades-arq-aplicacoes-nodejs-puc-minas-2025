@@ -38,7 +38,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro na obtenção das tarefas devido ao erro:`,
+        `\nErro na obtenção das tarefas devido ao erro:`,
         error.message,
       );
       throw new NotFoundException(error.message);
@@ -63,7 +63,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro na obtenção da tarefa id ${id} devido ao erro:`,
+        `\nErro na obtenção da tarefa id ${id} devido ao erro:`,
         error.message,
       );
       throw new NotFoundException(error.message);
@@ -91,7 +91,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro na criação da tarefa cuja descrição é ${JSON.stringify(createTaskDto)}  devido ao erro: ${error.message}`,
+        `\nErro na criação da tarefa cuja descrição é ${JSON.stringify(createTaskDto)}  devido ao erro: ${error.message}`,
       );
       throw new UnprocessableEntityException(error.message);
     }

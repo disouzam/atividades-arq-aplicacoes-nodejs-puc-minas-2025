@@ -55,7 +55,7 @@ export class UsersController {
       return result;
     } catch (error) {
       console.error(
-        `Erro na criação do usuário: ${JSON.stringify(createUserDto)} devido ao erro: ${error.message}`,
+        `\nErro na criação do usuário: ${JSON.stringify(createUserDto)} devido ao erro: ${error.message}`,
       );
       throw new UnprocessableEntityException(error.message);
     }

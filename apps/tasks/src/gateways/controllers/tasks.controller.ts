@@ -24,7 +24,7 @@ export class TasksController {
   async findAll(@Payload() data: { userId: number }) {
     try {
       console.log(
-        `Recebendo mensagem para Tasks para listar todas as tarefas para o usuários ${data.userId}...`,
+        `\nRecebendo mensagem para Tasks para listar todas as tarefas para o usuários ${data.userId}...`,
       );
 
       const result = await this.getAllTasksUseCase.execute({
@@ -39,7 +39,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro ao listas tarefas no microserviço de Tasks: ${error.name}-${error.message}`,
+        `\nErro ao listas tarefas no microserviço de Tasks: ${error.name}-${error.message}`,
       );
       throw new NotFoundException(error.message);
     }
@@ -49,7 +49,7 @@ export class TasksController {
   async findOne(@Payload() data: { userId: number; taskId: number }) {
     try {
       console.log(
-        `Buscando tarefa por ID=${data.taskId} no microserviço de Tasks...`,
+        `\nBuscando tarefa por ID=${data.taskId} no microserviço de Tasks...`,
       );
 
       const result = await this.getTaskByIdUseCase.execute({
@@ -62,7 +62,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro ao listas tarefa cujo ID é ${data.taskId} no microserviço de Tasks: ${error.name}-${error.message}`,
+        `\nErro ao listas tarefa cujo ID é ${data.taskId} no microserviço de Tasks: ${error.name}-${error.message}`,
       );
       throw new NotFoundException(error.message);
     }
@@ -72,7 +72,7 @@ export class TasksController {
   async create(@Payload() data: { task: CreateTaskDto; userId: number }) {
     try {
       console.log(
-        `Criando tarefa no microserviço de Tasks: ${data.task.name}...`,
+        `\nCriando tarefa no microserviço de Tasks: ${data.task.name}...`,
       );
 
       const result = await this.createTaskUseCase.execute({
@@ -88,7 +88,7 @@ export class TasksController {
       return result;
     } catch (error) {
       console.error(
-        `Erro ao criar nova tarefa no microserviço de Tasks: ${error.name}-${error.message}`,
+        `\nErro ao criar nova tarefa no microserviço de Tasks: ${error.name}-${error.message}`,
       );
       throw new UnprocessableEntityException(error.message);
     }

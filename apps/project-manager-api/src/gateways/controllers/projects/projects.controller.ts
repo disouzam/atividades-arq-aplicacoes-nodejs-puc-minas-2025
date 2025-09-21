@@ -40,7 +40,7 @@ export class ProjectsController {
         `user:${loggedUser.sub}/all-projects`,
       );
 
-      console.log('Cached Data:', cachedData);
+      console.log('\nCached Data:', cachedData);
 
       if (cachedData) {
         console.log('Returning cached data');

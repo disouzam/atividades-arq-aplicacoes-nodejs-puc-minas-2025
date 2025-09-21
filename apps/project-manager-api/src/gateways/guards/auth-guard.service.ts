@@ -36,7 +36,7 @@ export class AuthGuardService implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
-      console.error('Token inválido');
+      console.error('\nToken inválido');
       throw new UnauthorizedException();
     }
 
@@ -47,11 +47,11 @@ export class AuthGuardService implements CanActivate {
       request['user'] = payload;
     } catch (error) {
       console.error(
-        `Token incorreto devido ao erro: ${error.name}-${error.message}`,
+        `\nToken incorreto devido ao erro: ${error.name}-${error.message}`,
       );
 
       if (error.name === 'TokenExpiredError') {
-        console.error(`Token expirado em: ${error.expiredAt}`);
+        console.error(`\nToken expirado em: ${error.expiredAt}`);
       }
 
       throw new UnauthorizedException();
