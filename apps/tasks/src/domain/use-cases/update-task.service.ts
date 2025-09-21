@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BaseUseCase } from '../base-use-case';
+import { BaseUseCase } from './base-use-case';
 import { UsersRepositoryService } from '@project-manager-api/infrastructure/database/repositories/users.repository.service';
 import { TasksRepositoryService } from '@project-manager-api/infrastructure/database/repositories/tasks.repository.service';
 import { UpdateTaskDto } from '@project-manager-api/gateways/controllers/tasks/dtos/update-task.dto';
