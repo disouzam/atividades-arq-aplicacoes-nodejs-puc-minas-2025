@@ -25,12 +25,22 @@ export class TasksController {
   async findAll(@Req() request) {
     try {
       const loggedUser = request.user;
-      console.log('Disparando mensagem para Tasks');
+      console.log(
+        '\nDisparando mensagem para Tasks para obter todas as tasks cadastradas...',
+      );
 
-      return await this.redisClient
+      const result = await this.redisClient
         .send({ cmd: 'get_tasks' }, { userId: loggedUser.sub })
         .toPromise();
+
+      console.log('Tasks encontradas:', result);
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro na obtenção das tarefas devido ao erro:`,
+        error.message,
+      );
       throw new NotFoundException(error.message);
     }
   }
@@ -40,10 +50,22 @@ export class TasksController {
     try {
       const loggedUser = request.user;
 
-      return await this.redisClient
+      console.log(
+        `\nDisparando mensagem para Tasks para obter a task cujo id é ${id}...`,
+      );
+
+      const result = await this.redisClient
         .send({ cmd: 'get_task_by_id' }, { userId: loggedUser.sub, taskId: id })
         .toPromise();
+
+      console.log('Task encontrada:', result);
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro na obtenção da tarefa id ${id} devido ao erro:`,
+        error.message,
+      );
       throw new NotFoundException(error.message);
     }
   }
@@ -53,13 +75,24 @@ export class TasksController {
     try {
       const loggedUser = request.user;
 
-      return await this.redisClient
+      console.log(
+        `\nDisparando mensagem para Tasks para criar uma nova task cujo nome é ${createTaskDto.name}...`,
+      );
+
+      const result = await this.redisClient
         .send(
           { cmd: 'create_task' },
           { userId: loggedUser.sub, task: createTaskDto },
         )
         .toPromise();
+
+      console.log('Task criada:', result);
+
+      return result;
     } catch (error) {
+      console.error(
+        `Erro na criação da tarefa cuja descrição é ${JSON.stringify(createTaskDto)}  devido ao erro: ${error.message}`,
+      );
       throw new UnprocessableEntityException(error.message);
     }
   }
